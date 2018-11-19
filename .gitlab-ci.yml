@@ -24,7 +24,7 @@ build:
 lint:
   stage: lint
   script:
-    - /opt/miniconda/envs/backend/bin/flake8 .
+    - ./opt/miniconda/envs/backend/bin/flake8 .
 
 test:
   stage: test
