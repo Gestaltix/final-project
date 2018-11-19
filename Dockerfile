@@ -36,3 +36,4 @@ RUN chmod +x /scripts/*
 WORKDIR /
 
 EXPOSE 22
+EXPOSE 8000
