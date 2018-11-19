@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    env_file:
+      - prod.env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static-files:/static-files
+      - media-files:/media-files
+      - frontend:/andrmeda-front-end
+#    command: /bin/bash -c "nginx -g 'daemon off;'"
+
+
+  app:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
+    restart: always
+    env_file:
+      - prod.env
+    command: sh /scripts/run.sh
+    depends_on:
+      - postgres
+    volumes:
+      - media-files:/media-files
+      - static-files:/static-files
+      - frontend:/andromeda-front-end/public
+
+volumes:
+  postgres:
+  static-files:
+  media-files:
+  frontend:

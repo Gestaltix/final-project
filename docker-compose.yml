@@ -1,0 +1,40 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DATABASE: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:1.15.0
+    ports:
+    - "80:80"
+    volumes:
+    - ./nginx:/etc/nginx/conf.d
+
+  app:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
+    restart: always
+    env_file:
+      - prod.env
+    ports:
+      - "8000:8000"
+      - "4777:22"
+    command: "/usr/sbin/sshd -D"
+    depends_on:
+      - postgres
+    volumes:
+      - ./app:/app
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+      - ./scripts:/scripts
+
+volumes:
+  postgres:
+
