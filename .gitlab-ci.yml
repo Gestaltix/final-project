@@ -1,7 +1,7 @@
 stages:
   - pull
   - build
-#  - lint
+  - lint
   - test
   - push
   - cleanup
