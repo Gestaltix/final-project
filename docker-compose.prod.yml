@@ -19,7 +19,6 @@ services:
       - ./nginx:/etc/nginx/conf.d
       - static-files:/static-files
       - media-files:/media-files
-      - frontend:/andrmeda-front-end
 #    command: /bin/bash -c "nginx -g 'daemon off;'"
 
 
@@ -34,10 +33,8 @@ services:
     volumes:
       - media-files:/media-files
       - static-files:/static-files
-      - frontend:/andromeda-front-end/public
 
 volumes:
   postgres:
   static-files:
   media-files:
-  frontend:
