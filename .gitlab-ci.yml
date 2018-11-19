@@ -33,7 +33,7 @@ test:
   script:
     - export CI_PIPELINE_ID=$CI_PIPELINE_ID
     - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
-    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend python manage.py test
+    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run python backend/manage.py test
 
 push image:
   stage: push
