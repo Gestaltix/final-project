@@ -4,9 +4,9 @@ services:
     image: "${CI_PIPELINE_ID}:${CI_BUILD_REF_NAME}"
     restart: always
     env_file:
-      - prod.env
+    - prod.env
     depends_on:
-      - postgres
+    - postgres
 
   postgres:
     image: postgres
@@ -15,9 +15,9 @@ services:
       POSTGRES_DATABASE: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - postgres:/var/lib/postgresql/data
+    - postgres:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+    - "5432:5432"
 
 
 volumes:
