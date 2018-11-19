@@ -24,7 +24,7 @@ build:
 lint:
   stage: lint
   script:
-    - flake8 .
+    - ./flake8 .
 
 test:
   stage: test
