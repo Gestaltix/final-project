@@ -23,7 +23,7 @@ services:
 #    command: /bin/bash -c "nginx -g 'daemon off;'"
 
 
-  app:
+  backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
     restart: always
     env_file:
