@@ -24,9 +24,7 @@ build:
 lint:
   stage: lint
   script:
-    - export CI_PIPELINE_ID=$CI_PIPELINE_ID
-    - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
-    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run flake8 .
+    - flake8 .
 
 test:
   stage: test
