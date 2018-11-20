@@ -7,7 +7,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -qqy \
     bzip2 \
     libssl-dev \
     openssh-server \
-    npm
+    npm \
+    nodejs
+
+RUN npm install -g n
+RUN n 9.11.1
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:propulsion' | chpasswd
