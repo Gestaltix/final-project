@@ -34,7 +34,9 @@ services:
     volumes:
       - media-files:/media-files
       - static-files:/static-files
+      - /etc/letsencrypt:/etc/letsencrypt
       - frontend:/frontend
+
 volumes:
   postgres:
   static-files:
