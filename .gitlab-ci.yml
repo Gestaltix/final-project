@@ -1,8 +1,8 @@
 stages:
   - pull
   - build
-  - lint
-  - test
+#  - lint
+#  - test
   - push
   - cleanup
   - deploy
@@ -21,19 +21,17 @@ build:
   script:
     - docker build --tag="$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME" --cache-from="$CI_REGISTRY_IMAGE":latest .
 
-lint:
-  stage: lint
-  script:
-    - export CI_PIPELINE_ID=$CI_PIPELINE_ID
-    - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
-    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend flake8 .
-
-test:
-  stage: test
-  script:
-    - export CI_PIPELINE_ID=$CI_PIPELINE_ID
-    - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
-    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend python manage.py test
+#lint:
+#  stage: lint
+#  script:
+#    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend flake8 .
+#
+#test:
+#  stage: test
+#  script:
+#    - export CI_PIPELINE_ID=$CI_PIPELINE_ID
+#    - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
+#    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend python manage.py test
 
 push image:
   stage: push
