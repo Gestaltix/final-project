@@ -26,7 +26,7 @@ RUN mkdir -p /backend && \
 
 COPY ./backend/requirements.yml /backend/requirements.yml
 RUN /opt/miniconda/bin/conda env create -f /backend/requirements.yml
-ENV PATH /opt/miniconda/envs/backend/bin:$PATH
+ENV PATH /opt/miniconda/envs/project/bin:$PATH
 
 COPY ./backend /backend
 
