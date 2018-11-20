@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./app:/app
+      - ./backend:/backend
       - ./media-files:/media-files
       - ./static-files:/static-files
       - ./scripts:/scripts
