@@ -26,14 +26,14 @@ RUN mkdir -p /backend && \
 
 COPY ./backend/requirements.yml /backend/requirements.yml
 RUN /opt/miniconda/bin/conda env create -f /backend/requirements.yml
-ENV PATH /opt/miniconda/envs/project/bin:$PATH
+ENV PATH /opt/miniconda/envs/backend/bin:$PATH
 
 COPY ./backend /backend
 
 COPY ./scripts/* /scripts/
 RUN chmod +x /scripts/*
 
-WORKDIR /
+WORKDIR /backend
 
 EXPOSE 22
 EXPOSE 8000
