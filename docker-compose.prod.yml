@@ -34,7 +34,7 @@ services:
     volumes:
       - media-files:/media-files
       - static-files:/static-files
-      - ./frontend:/frontend
+      - frontend:/frontend
 volumes:
   postgres:
   static-files:
