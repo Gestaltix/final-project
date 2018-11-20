@@ -24,7 +24,7 @@ services:
 
   backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
-#    restart: always
+    restart: always
     env_file:
       - prod.env
     command: sh /scripts/run.sh
