@@ -36,4 +36,4 @@ RUN chmod +x /scripts/*
 WORKDIR /backend
 
 EXPOSE 22
-EXPOSE 8000
+EXPOSE 80
