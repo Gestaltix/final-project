@@ -19,6 +19,7 @@ services:
       - ./nginx:/etc/nginx/conf.d
       - static-files:/static-files
       - media-files:/media-files
+      - frontend:/frontend
 #    command: /bin/bash -c "nginx -g 'daemon off;'"
 
 
@@ -33,8 +34,9 @@ services:
     volumes:
       - media-files:/media-files
       - static-files:/static-files
-      -
+      - ./frontend:/frontend
 volumes:
   postgres:
   static-files:
   media-files:
+  frontend:
