@@ -24,7 +24,9 @@ build:
 lint:
   stage: lint
   script:
-    - ./opt/miniconda/envs/backend/bin/flake8 .
+    - export CI_PIPELINE_ID=$CI_PIPELINE_ID
+    - export CI_BUILD_REF_NAME=$CI_COMMIT_REF_NAME
+    - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml run backend flake8 .
 
 test:
   stage: test
