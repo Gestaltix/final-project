@@ -1,0 +1,12 @@
+.TopBar {
+    background-color: #212121;
+    color: white;
+    padding-bottom: 16.5px;
+    padding-top: 16.5px;
+}
+
+.TopBarLogo {
+    height: 59px;
+    width: auto;
+    margin-left: 130px;
+}
