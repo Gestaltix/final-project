@@ -25,7 +25,7 @@ SECRET_KEY = 'i488vc@lzb*r-sjah*i!#!d9t4b=+f!iep^w9%li3+g7*@8x78'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backend', 'localhost', 'skunk.propulsion-learn.ch']
+ALLOWED_HOSTS = ['backend', 'localhost', 'skunk.propulsion-learn.ch', '0.0.0.0']
 
 
 # Application definition

@@ -11,13 +11,6 @@ services:
     ports:
       - "5432:5432"
 
-  nginx:
-    image: nginx:1.15.0
-    ports:
-    - "80:80"
-    volumes:
-    - ./nginx:/etc/nginx/conf.d
-
   backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
     restart: always
