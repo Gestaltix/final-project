@@ -3,3 +3,13 @@
   margin-left: 130px;
   font-size: 2.3rem;
 }
+
+.dropzone {
+  width : 100%;
+  height : 50px;
+  border : 1px solid black;
+}
+
+.dropzone > div {
+  text-align: center;
+}
