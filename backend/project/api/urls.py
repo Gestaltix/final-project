@@ -5,5 +5,5 @@ from project.api.views.helloworld import HelloWorld
 
 urlpatterns = [
     path('', HelloWorld.as_view(), name='hello-world'),
-    path('dataSend/', DataSend.as_view())
+    path('data-send/', DataSend.as_view())
 ]
