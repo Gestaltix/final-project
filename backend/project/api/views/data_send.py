@@ -14,9 +14,9 @@ class DataSend(APIView):
         filename = fs.save(myfile.name, myfile)
         file_name = f'/media-files/{filename}'
         print("filename", file_name)
-        with ZipFile(file_name, 'r') as zip:
-            zip.printdir()
+        with ZipFile(file_name, 'r') as zipf:
+            zipf.printdir()
             print('Extracting all the files now...')
-            files = zip.extractall()
-            print('Done!')
+            files = zipf.extractall()
+            print('Done!', files)
         return HttpResponse({'data': f"{make_df('/01.csv', 'fieldwiz')}"})
