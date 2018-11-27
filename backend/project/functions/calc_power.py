@@ -130,7 +130,8 @@ def get_files(folder_path):
 
     return files
 
-def make_df(file_path,file_type):
+
+def make_df(file_path, file_type):
 
     print('running make_df...')
     if file_type in ('fieldwiz'):

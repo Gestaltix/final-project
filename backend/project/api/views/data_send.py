@@ -20,4 +20,4 @@ class DataSend(APIView):
             print('Extracting all the files now...')
             files = zip.extractall()
             print('Done!')
-        return HttpResponse({'data': f"{make_df('/01.csv', '.CSV')}"})
+        return HttpResponse({'data': f"{make_df('/01.csv', 'fieldwiz')}"})
