@@ -1,57 +1,44 @@
 import React, { Component } from 'react';
-import TopBar from '../../components/topbar';
-import Dropzone from 'react-dropzone';
-import './index.css';
 import connection from '../../connection';
 import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
+import { Tabs, Tab } from '@material-ui/core';
+import TopBar from '../../components/topbar';
+// eslint-disable-next-line
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
-import Plot from 'react-plotly.js';
+import Graph from '../../components/graph';
+import ChangePlayerForm from '../change-player-form';
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      tabs: ['Team', 'Player']
+    }
+  }
   render() {
+    console.log(this.props.nonFetchData.tab)
     return (
       <div>
         <TopBar />
+        <Tabs
+          value={this.props.nonFetchData.tab}
+          onChange={(e, index) => this.tabHandler(e, index)}>
+          {this.state.tabs.map(tab => {
+            return <Tab label={tab} />
+          })}
+        </Tabs>
         <FilePond server='http://0.0.0.0:8000/backend/data-send/' />
+        <Graph />
+        {this.props.nonFetchData.tab = 1 ? <ChangePlayerForm /> : null}
       </div >
     );
   }
-  // render() {
-  //   return (
-  //     <div>
-  //       <TopBar />
-  //       <Plot
-  //         data={[
-  //           {
-  //             // x: [1, 2, 3],
-  //             // y: [2, 6, 3],
-  //             // type: 'scatter',
-  //             // mode: 'lines+points',
-  //             // marker: { color: 'red' },
-  //           },
-  //           { type: 'bar', x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], y: [2, 5, 3, 4, 5, 2, 3, 7, 8, 5, 8] },
-  //         ]}
-  //         layout={{ title: 'A Fancy Plot' }}
-  //         style={{
-  //           height: '100%',
-  //           // width: 'auto',
-  //           margin: '0 auto',
-  //         }}
-  //       />
-  //     </div>
-  //   );
-  // }
-  onDrop = (files) => {
-    console.log(files)
-    const data = new FormData()
-    data.append('file', files[0])
-    console.log(data.file)
+  tabHandler = (e, index) => {
+    console.log('Dispatching changeTab')
     this.props.dispatch({
-      type: 'sendData',
-      method: 'POST',
-      endpoint: 'data-send',
-      body: data
+      type: 'changeTab',
+      tab: index
     })
   }
 }

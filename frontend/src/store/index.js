@@ -1,8 +1,5 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import customMiddleWare from './middleware';
+import { nonFetchData } from './reducers/non-fetch-data';
 
-const reducer = (state = {}, action) => {
-    return state
-}
-
-export default createStore(reducer, applyMiddleware(customMiddleWare))
+export default createStore(combineReducers({ nonFetchData }), applyMiddleware(customMiddleWare))
