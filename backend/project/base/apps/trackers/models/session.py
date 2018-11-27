@@ -35,6 +35,7 @@ class File(TimeStampedModel):
     )
     file = models.FileField(
         verbose_name='file',
+        null=True,
     )
 
     def __str__(self):
