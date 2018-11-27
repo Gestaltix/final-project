@@ -9,6 +9,12 @@ class Session(TimeStampedModel):
         on_delete=models.SET_NULL,
         null=True,
     )
+    team = models.ForeignKey(
+        verbose_name='team',
+        to='team.Team',
+        on_delete=models.CASCADE,
+        null=True,
+    )
 
     def __str__(self):
         return str(self.created)
@@ -20,6 +26,12 @@ class File(TimeStampedModel):
         to='trackers.Session',
         related_name='files',
         on_delete=models.CASCADE,
+    )
+    member = models.ForeignKey(
+        verbose_name='member',
+        to='team.Member',
+        on_delete=models.CASCADE,
+        null=True,
     )
     file = models.FileField(
         verbose_name='file',
