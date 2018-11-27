@@ -10,6 +10,9 @@ class Session(TimeStampedModel):
         null=True,
     )
 
+    def __str__(self):
+        return str(self.created)
+
 
 class File(TimeStampedModel):
     session = models.ForeignKey(
@@ -21,3 +24,6 @@ class File(TimeStampedModel):
     file = models.FileField(
         verbose_name='file',
     )
+
+    def __str__(self):
+        return self.file.path

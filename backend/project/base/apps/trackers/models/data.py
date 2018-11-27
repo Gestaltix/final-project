@@ -6,6 +6,7 @@ class Data(TimeStampedModel):
     session = models.ForeignKey(
         verbose_name='session',
         to='trackers.Session',
+        related_name='data',
         on_delete=models.CASCADE,
     )
     time = models.DateTimeField(
@@ -26,3 +27,6 @@ class Data(TimeStampedModel):
     speed = models.FloatField(
         verbose_name='speed (km/h)',
     )
+
+    def __str__(self):
+        return str(self.time)
