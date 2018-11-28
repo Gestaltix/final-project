@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'project.base',
     'project.base.apps.team',
     'project.base.apps.trackers',
-    'rest_framework',
+    'project.base.apps.calculations',
     'corsheaders',
+    'rest_framework',
 ]
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440*6

@@ -15,6 +15,11 @@ class Session(TimeStampedModel):
         on_delete=models.CASCADE,
         null=True,
     )
+    file = models.FileField(
+        verbose_name='file',
+        upload_to='sessions/',
+        null=True,
+    )
 
     def __str__(self):
         return str(self.created)
@@ -35,7 +40,8 @@ class File(TimeStampedModel):
     )
     file = models.FileField(
         verbose_name='file',
+        null=True,
     )
 
     def __str__(self):
-        return self.file.path
+        return str(self.session)

@@ -5,7 +5,7 @@ from project.base.apps.trackers.models import Session, Data
 
 class Command(BaseCommand):
     help = 'Load the filedwiz data files into the database'
-    BATCH_SIZE = 2000
+    BATCH_SIZE = 5000
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Starting to load session files'))
@@ -30,6 +30,7 @@ class Command(BaseCommand):
                         counter = 0
                     data.append(Data(
                         session=session,
+                        member=file.member,
                         time=row['time'],
                         x=row['xPos[m]'],
                         y=row['yPos[m]'],
