@@ -13,7 +13,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabs: ['Team', 'Player']
+      tabs: ['Team', 'Player', 'Upload Data']
     }
   }
   render() {
@@ -21,16 +21,12 @@ class Home extends Component {
     return (
       <div>
         <TopBar history={this.props.history} />
-        <Tabs
-          value={this.props.nonFetchData.tab}
-          onChange={(e, index) => this.tabHandler(e, index)}>
-          {this.state.tabs.map(tab => {
-            return <Tab label={tab} />
-          })}
+        <Tabs value={this.props.nonFetchData.tab} onChange={(e, index) => this.tabHandler(e, index)}>
+          {this.state.tabs.map(tab => { return <Tab key={tab} label={tab} /> })}
         </Tabs>
-        <FilePond server='http://0.0.0.0:8000/backend/data-send/' />
-        <Graph />
-        {this.props.nonFetchData.tab = 1 ? <ChangePlayerForm /> : null}
+        {this.props.nonFetchData.tab === 0 ? <Graph /> : null}
+        {this.props.nonFetchData.tab === 1 ? <ChangePlayerForm /> : null}
+        {this.props.nonFetchData.tab === 2 ? <FilePond server='165.227.139.129' /> : null}
       </div >
     );
   }

@@ -19,9 +19,17 @@ class Login extends Component {
             <Paper className='LoginPaper'>
                 <form onSubmit={this.submitHandler}>
                     <img src={logo} alt='Skunk Sports' className='LoginLogo' />
-                    <TextField label='username' fullWidth onChange={this.usernameHandler} value={this.state.username} />
-                    <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} />
-                    <div className='LoginButton'><Button color='primary' variant='text' type='submit'>Login</Button></div>
+                    <TextField label='username' fullWidth onChange={this.usernameHandler} value={this.state.username} className='LoginInput' />
+                    <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} className='LoginInput' />
+                    <div className='LoginButtonDiv'>
+                        <Button
+                            className='LoginButton'
+                            color='primary'
+                            variant='text'
+                            type='submit'>
+                            Login
+                    </Button>
+                    </div>
                 </form>
             </Paper>
     }
@@ -49,4 +57,4 @@ class Login extends Component {
     }
 }
 
-export default connection(Login)
+export default (connection(Login))

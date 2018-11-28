@@ -3,7 +3,6 @@ from zipfile import ZipFile
 
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from rest_framework.views import APIView
 
