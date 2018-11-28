@@ -3,6 +3,7 @@ import { TextField, Paper, Button } from '@material-ui/core';
 import connection from '../../connection';
 import './index.css';
 import logo from '../../assets/images/skunkLogo.svg';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -13,14 +14,16 @@ class Login extends Component {
         }
     }
     render() {
-        return <Paper className='LoginPaper'>
-            <form onSubmit={this.submitHandler}>
-                <img src={logo} alt='Skunk Sports' className='LoginLogo' />
-                <TextField label='username' fullWidth onChange={this.usernameHandler} value={this.state.username} />
-                <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} />
-                <div className='LoginButton'><Button color='primary' variant='text' type='submit'>Login</Button></div>
-            </form>
-        </Paper>
+        return localStorage.getItem('token') ?
+            <Redirect to='/' /> :
+            <Paper className='LoginPaper'>
+                <form onSubmit={this.submitHandler}>
+                    <img src={logo} alt='Skunk Sports' className='LoginLogo' />
+                    <TextField label='username' fullWidth onChange={this.usernameHandler} value={this.state.username} />
+                    <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} />
+                    <div className='LoginButton'><Button color='primary' variant='text' type='submit'>Login</Button></div>
+                </form>
+            </Paper>
     }
     usernameHandler = (e) => {
         this.setState({
@@ -41,7 +44,7 @@ class Login extends Component {
                 username: this.state.username,
                 password: this.state.password
             },
-            type: null
+            type: 'setToken'
         })
     }
 }

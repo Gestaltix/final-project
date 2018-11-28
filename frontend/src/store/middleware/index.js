@@ -5,12 +5,12 @@ const customMiddleWare = store => dispatch => action => {
     }
 
     const headers = new Headers({
-        // Authorization: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : null,
-        'content-type': 'multipart/form-data'
+        Authorization: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : null,
+        'content-type': 'application/json'
     })
     const options = {
         headers: headers,
-        body: action.body,
+        body: JSON.stringify(action.body),
         method: action.method,
     }
     fetch(`http://localhost:8000/backend/${action.endpoint}/`, options)
@@ -18,9 +18,11 @@ const customMiddleWare = store => dispatch => action => {
         .then(data => {
             console.log(data)
             if (data === null) {
-                return null
+                dispatch({
+                    type: null
+                })
             }
-            dispatch({
+            else dispatch({
                 type: action.type,
                 data: data
             })

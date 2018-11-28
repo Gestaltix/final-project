@@ -3,6 +3,8 @@
     color: white;
     padding-bottom: 16.5px;
     padding-top: 16.5px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .TopBarLogo {

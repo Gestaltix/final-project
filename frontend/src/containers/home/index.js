@@ -20,7 +20,7 @@ class Home extends Component {
     console.log(this.props.nonFetchData.tab)
     return (
       <div>
-        <TopBar />
+        <TopBar history={this.props.history} />
         <Tabs
           value={this.props.nonFetchData.tab}
           onChange={(e, index) => this.tabHandler(e, index)}>
@@ -40,6 +40,9 @@ class Home extends Component {
       type: 'changeTab',
       tab: index
     })
+  }
+  componentDidMount = () => {
+    if (!localStorage.getItem('token')) { this.props.history.replace('/login') }
   }
 }
 
