@@ -9,6 +9,12 @@ class Data(TimeStampedModel):
         related_name='data',
         on_delete=models.CASCADE,
     )
+    member = models.ForeignKey(
+        verbose_name='member',
+        to='team.Member',
+        on_delete=models.CASCADE,
+        related_name='data',
+    )
     time = models.DateTimeField(
         verbose_name='time',
     )

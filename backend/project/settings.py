@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'project.base',
     'project.base.apps.team',
     'project.base.apps.trackers',
+    'project.base.apps.calculations',
     'corsheaders',
     'rest_framework',
 ]

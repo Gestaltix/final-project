@@ -30,6 +30,7 @@ class Command(BaseCommand):
                         counter = 0
                     data.append(Data(
                         session=session,
+                        member=file.member,
                         time=row['time'],
                         x=row['xPos[m]'],
                         y=row['yPos[m]'],
