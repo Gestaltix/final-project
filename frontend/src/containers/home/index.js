@@ -17,21 +17,19 @@ class Home extends Component {
     }
   }
   render() {
-    console.log(this.props.nonFetchData.tab)
     return (
       <div>
         <TopBar history={this.props.history} />
-        <Tabs value={this.props.nonFetchData.tab} onChange={(e, index) => this.tabHandler(e, index)}>
+        <Tabs centered value={this.props.nonFetchData.tab} onChange={(e, index) => this.tabHandler(e, index)}>
           {this.state.tabs.map(tab => { return <Tab key={tab} label={tab} /> })}
         </Tabs>
         {this.props.nonFetchData.tab === 0 ? <Graph /> : null}
         {this.props.nonFetchData.tab === 1 ? <ChangePlayerForm /> : null}
-        {this.props.nonFetchData.tab === 2 ? <FilePond server='165.227.139.129' /> : null}
+        {this.props.nonFetchData.tab === 2 ? <FilePond className='FilePond' server='165.227.139.129' /> : null}
       </div >
     );
   }
   tabHandler = (e, index) => {
-    console.log('Dispatching changeTab')
     this.props.dispatch({
       type: 'changeTab',
       tab: index

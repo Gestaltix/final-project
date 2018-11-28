@@ -4,7 +4,6 @@ export const nonFetchData = (state = {
     const newState = { ...state }
     switch (action.type) {
         case 'changeTab':
-            console.log(action.tab)
             newState.tab = action.tab
             return newState
         default:

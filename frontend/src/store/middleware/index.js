@@ -14,7 +14,7 @@ const customMiddleWare = store => dispatch => action => {
         method: action.method,
     }
     fetch(`http://localhost:8000/backend/${action.endpoint}/`, options)
-        .then(res => res.status === 401 ? null : res.json())
+        .then(res => res.status !== 200 ? null : res.json())
         .then(data => {
             console.log(data)
             if (data === null) {

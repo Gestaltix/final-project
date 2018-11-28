@@ -20,7 +20,7 @@ class Login extends Component {
                 <form onSubmit={this.submitHandler}>
                     <img src={logo} alt='Skunk Sports' className='LoginLogo' />
                     <TextField label='username' fullWidth onChange={this.usernameHandler} value={this.state.username} className='LoginInput' />
-                    <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} className='LoginInput' />
+                    <TextField label='password' fullWidth onChange={this.passwordHandler} value={this.state.password} className='LoginInput' type='password' />
                     <div className='LoginButtonDiv'>
                         <Button
                             className='LoginButton'

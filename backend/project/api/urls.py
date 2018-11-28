@@ -3,8 +3,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from project.api.views.data_send import DataSend
 
+from api.views.get_teams import GetTeams
+
 urlpatterns = [
     path('data-send/', DataSend.as_view()),
+    path('get-teams/', GetTeams.as_view()),
+
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),

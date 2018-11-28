@@ -8,7 +8,14 @@ class Graph extends Component {
             <Plot
                 className='GraphPlot'
                 data={[
-                    { type: 'bar', x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], y: [2, 5, 3, 4, 5, 2, 3, 7, 8, 5, 8] },
+                    {
+                        type: 'line', x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], y: [2, 5, 3, 4, 5, 2, 3, 7, 8, 5, 8],
+                        marker: {
+                            color: 'yellow',
+                            line:
+                                { color: 'black', width: 2 }
+                        }
+                    },
                 ]}
                 layout={{ title: 'A Fancy Plot' }}
             />
