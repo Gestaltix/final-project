@@ -6,6 +6,7 @@ class Member(TimeStampedModel):
     team = models.ForeignKey(
         verbose_name='team',
         to='team.Team',
+        related_name='members',
         on_delete=models.CASCADE,
     )
     name = models.CharField(
