@@ -2,11 +2,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
 
 mypatterns = [
     path('admin/', admin.site.urls),
-    path('', include('project.api.urls')),
-
+    path('api/', include('project.api.urls')),
+    path('docs/', include_docs_urls(title='Skunk Rest API')),
 ]
 
 urlpatterns = [
