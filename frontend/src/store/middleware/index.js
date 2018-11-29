@@ -19,7 +19,7 @@ const customMiddleWare = store => dispatch => action => {
             console.log(data)
             if (data === null) {
                 dispatch({
-                    type: null
+                    type: 'authFalse'
                 })
             }
             else dispatch({

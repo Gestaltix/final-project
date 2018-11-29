@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from corsheaders.defaults import default_methods
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -50,16 +51,14 @@ INSTALLED_APPS = [
 DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440*6
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsPostCsrfMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -143,3 +142,19 @@ MEDIA_ROOT = "/media-files"
 MEDIA_URL = "/media/"
 STATIC_URL = "/static/"
 STATIC_ROOT = "/static-files"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=250),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+

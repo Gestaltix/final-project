@@ -3,6 +3,7 @@ from django_extensions.db.models import TimeStampedModel
 
 class Member(TimeStampedModel):
     team = models.ForeignKey(
+        related_name='member',
         verbose_name='team',
         to='team.Team',
         on_delete=models.CASCADE,
@@ -10,6 +11,9 @@ class Member(TimeStampedModel):
     name = models.CharField(
         verbose_name='name',
         max_length=200,
+    )
+    height = models.FloatField(
+        verbose_name='height'
     )
     weight = models.FloatField(
         verbose_name='weight',

@@ -1,10 +1,18 @@
 export const nonFetchData = (state = {
-    tab: 0,
+    homeTab: 0,
+    teamTab: 0,
+    memberTab: 0,
 }, action) => {
     const newState = { ...state }
     switch (action.type) {
-        case 'changeTab':
-            newState.tab = action.tab
+        case 'changeHomeTab':
+            newState.homeTab = action.tab
+            return newState
+        case 'changeTeamTab':
+            newState.teamTab = action.tab
+            return newState
+        case 'changeMemberTab':
+            newState.memberTab = action.tab
             return newState
         default:
             return newState

@@ -6,37 +6,47 @@ import { Tabs, Tab } from '@material-ui/core';
 import TopBar from '../../components/topbar';
 // eslint-disable-next-line
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
-import Graph from '../../components/graph';
-import ChangePlayerForm from '../change-player-form';
+import Teams from '../../containers/teams';
+import ChangeMemberForm from '../change-member-form';
+import Sessions from '../sessions';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabs: ['Team', 'Player', 'Upload Data']
+      tabs: ['Teams', 'Players', 'Add Team', 'Make New Session']
     }
   }
   render() {
+    console.log(this.props)
     return (
       <div>
         <TopBar history={this.props.history} />
-        <Tabs centered value={this.props.nonFetchData.tab} onChange={(e, index) => this.tabHandler(e, index)}>
+        <Tabs centered value={this.props.nonFetchData.homeTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>
           {this.state.tabs.map(tab => { return <Tab key={tab} label={tab} /> })}
         </Tabs>
-        {this.props.nonFetchData.tab === 0 ? <Graph /> : null}
-        {this.props.nonFetchData.tab === 1 ? <ChangePlayerForm /> : null}
-        {this.props.nonFetchData.tab === 2 ? <FilePond className='FilePond' server='165.227.139.129' /> : null}
+        {this.props.nonFetchData.homeTab === 0 ? <Teams /> : null}
+        {this.props.nonFetchData.homeTab === 1 ? <ChangeMemberForm /> : null}
+        {this.props.nonFetchData.homeTab === 2 ? <FilePond className='FilePond' server='165.227.139.129' /> : null}
+        {this.props.nonFetchData.homeTab === 3 ? <Sessions /> : null}
       </div >
     );
   }
   tabHandler = (e, index) => {
     this.props.dispatch({
-      type: 'changeTab',
+      type: 'changeHomeTab',
       tab: index
     })
   }
   componentDidMount = () => {
     if (!localStorage.getItem('token')) { this.props.history.replace('/login') }
+    else {
+      this.props.dispatch({
+        type: 'setTeam',
+        method: 'GET',
+        endpoint: 'get-teams',
+      })
+    }
   }
 }
 
