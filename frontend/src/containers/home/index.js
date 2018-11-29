@@ -14,7 +14,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabs: ['Teams', 'Players', 'Add Team', 'Sessions']
+      tabs: ['Teams', 'Add Team', 'Sessions']
     }
   }
   render() {
@@ -26,9 +26,8 @@ class Home extends Component {
           {this.state.tabs.map(tab => { return <Tab key={tab} label={tab} /> })}
         </Tabs>
         {this.props.nonFetchData.homeTab === 0 ? <Teams /> : null}
-        {this.props.nonFetchData.homeTab === 1 ? <ChangeMemberForm /> : null}
-        {this.props.nonFetchData.homeTab === 2 ? <FilePond className='FilePond' server='165.227.139.129' /> : null}
-        {this.props.nonFetchData.homeTab === 3 ? <Sessions /> : null}
+        {this.props.nonFetchData.homeTab === 1 ? <FilePond className='FilePond' server='165.227.139.129' /> : null}
+        {this.props.nonFetchData.homeTab === 2 ? <Sessions /> : null}
       </div >
     );
   }

@@ -17,6 +17,8 @@ class ChangeMemberForm extends Component {
         console.log(this.props)
         return this.props.teams[this.props.nonFetchData.teamTab].length !== 0 ?
             <Paper>
+
+                <div className='GraphButton'><Button>Add Player</Button></div>
                 <Tabs centered value={this.props.nonFetchData.memberTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>
                     {this.props.teams[this.props.nonFetchData.teamTab].members.map(tab => { return <Tab key={tab.name} label={tab.name} /> })}
                 </Tabs>
