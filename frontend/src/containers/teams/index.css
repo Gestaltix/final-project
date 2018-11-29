@@ -1,0 +1,8 @@
+.GraphPlot {
+    width: 100%;
+    background-color: black;
+}
+
+.GraphPlot * {
+    color: white;
+}

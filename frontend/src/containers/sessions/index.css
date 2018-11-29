@@ -1,0 +1,5 @@
+.SessionsButton {
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+}
