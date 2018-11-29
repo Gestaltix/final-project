@@ -3,7 +3,6 @@ from django_extensions.db.models import TimeStampedModel
 
 class Member(TimeStampedModel):
     team = models.ForeignKey(
-        related_name='member',
         verbose_name='team',
         to='team.Team',
         related_name='members',

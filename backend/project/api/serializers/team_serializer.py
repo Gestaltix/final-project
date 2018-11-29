@@ -5,9 +5,9 @@ from project.base.apps.team.models import Team
 
 
 class TeamSerializer(serializers.ModelSerializer):
-    member = MemberSerializer(many=True)
+    members = MemberSerializer(many=True)
     user = UserSerializer()
 
     class Meta:
         model = Team
-        fields = ['name', 'member', 'user']
+        fields = ['name', 'members', 'user']

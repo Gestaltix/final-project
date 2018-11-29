@@ -14,7 +14,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabs: ['Teams', 'Players', 'Add Team', 'Make New Session']
+      tabs: ['Teams', 'Players', 'Add Team', 'Sessions']
     }
   }
   render() {
