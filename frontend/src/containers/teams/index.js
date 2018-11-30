@@ -1,32 +1,49 @@
 import React, { Component } from 'react';
-import Plot from 'react-plotly.js';
+import { Link } from 'react-router-dom';
 import './index.css'
-import { Tabs, Tab, Button, Paper, TextField } from '@material-ui/core';
+import { Tabs, Tab, Button, TextField, Paper } from '@material-ui/core';
 import connection from '../../connection';
-import ChangeMemberForm from '../change-member-form';
+import ChangeMemberForm from '../member';
 
-class Graph extends Component {
+class Teams extends Component {
     render() {
         return (
-            this.props.teams.length !== 0 ?
-                this.props.teams[this.props.nonFetchData.teamTab].members.length !== 0 ?
+            <div>
+                <Link to='/new-team' className='AddTeamButton'><Button variant='outlined'>Add Team</Button></Link>
+                {this.props.teams.length !== 0 ?
                     <div>
-                        <div className='GraphButton'><Button>New Team</Button></div>
-                        <Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>
-                            {this.props.teams.map((team) => {
-                                return <Tab key={team.name} label={team.name} />
-                            })}
-                        </Tabs>
-                        Name: <TextField label={this.props.teams[this.props.nonFetchData.teamTab].name} />
-
-                        <Button>Add Player</Button>
-                        <ChangeMemberForm />
+                        <Paper className='TeamPaper'>
+                            <Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>
+                                {this.props.teams.map((team) => {
+                                    return <Tab key={team.name} label={team.name} />
+                                })}
+                            </Tabs>
+                            <div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>
+                            <Button onClick={this.clickHandler}>Delete Current Team</Button>
+                        </Paper>
+                        <h2 className='NameForm'>Players</h2>
+                        <div className='NameForm'><Link to='/new-player'><Button variant='outlined'>Add Player</Button></Link></div>
+                        <div className='PlayerButtonDiv'>
+                            {this.props.teams[this.props.nonFetchData.teamTab].members.length !== 0 ?
+                                this.props.teams[this.props.nonFetchData.teamTab].members.map((member) => {
+                                    return <Link to={`players/${member.id}`}><Button>{member.name}</Button></Link>
+                                }) : <p className='NameForm'>We don't have any players in this team, so you won't be able to create a session for this team yet. Click "Add Player" to add one!</p>
+                            }
+                        </div>
                     </div>
                     :
-                    <h3>There aren't any members associated with your team. Click above to add one!</h3>
-                :
-                <h3>Loading...</h3>
+                    <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>}
+            </div>
         );
+    }
+    clickHandler = () => {
+        if (prompt('Are you sure you want to continue? This is irreversible. \nType "yes" to continue').toLowerCase() === 'yes') {
+            this.props.dispatch({
+                method: 'DELETE',
+                endpoint: `teams/${this.props.teams[this.props.nonFetchData.teamTab].id}`,
+                type: null
+            }).then(() => this.componentDidMount())
+        }
     }
     tabHandler = (e, index) => {
         this.props.dispatch({
@@ -38,6 +55,13 @@ class Graph extends Component {
             tab: index
         })
     }
+    componentDidMount = () => {
+        this.props.dispatch({
+            type: 'setTeam',
+            method: 'GET',
+            endpoint: 'teams',
+        })
+    }
 }
 
-export default connection(Graph);
+export default connection(Teams);

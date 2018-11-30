@@ -2,7 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.response import Response
 
 from project.base.apps.team.models import Team, Member
-from .serializers import TeamSerializer, MemberSerializer
+from project.api.teams.serializers import TeamSerializer, MemberSerializer
 
 
 class ListCreateTeamView(ListCreateAPIView):
@@ -45,7 +45,7 @@ class ListCreateTeamMemberView(ListAPIView):
 
 class GetUpdateDeleteTeamMemberView(RetrieveUpdateDestroyAPIView):
     serializer_class = MemberSerializer
-    queryset = Member.objects.all()
+    queryset = Member.objects.all().order_by('-created')
 
     def filter_queryset(self, queryset):
         return queryset.filter(team__user=self.request.user)

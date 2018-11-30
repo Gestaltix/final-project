@@ -7,7 +7,7 @@
     color: white;
 }
 
-.GraphButton {
+.AddTeamButton {
     margin: 1%;
     display: flex;
     justify-content: space-around;
@@ -16,4 +16,27 @@
 .TeamInfo {
     display: flex;
     justify-content: flex-start;
+}
+
+.NameForm {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.TeamPaper {
+    padding: 30px;
+}
+
+.PlayerButtonDiv {
+    width: 50%;
+    padding: 1%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.PlayerButtonDiv * {
+    margin: 5px;
 }

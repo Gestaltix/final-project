@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from datetime import timedelta
-from corsheaders.defaults import default_methods
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,21 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'project.api',
     'project.base',
     'project.base.apps.team',
     'project.base.apps.trackers',
     'project.base.apps.calculations',
-    'corsheaders',
     'rest_framework',
 ]
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440*6
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -83,9 +82,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ('localhost:3000', 'skunk.propulsion-learn.ch')
-CORS_ALLOW_METHODS = default_methods
+CORS_ORIGIN_WHITELIST = ['localhost', 'skunk.propulsion-learn.ch']
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
