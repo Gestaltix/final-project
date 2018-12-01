@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -81,8 +81,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = ['localhost', 'skunk.propulsion-learn.ch']
+CORS_ORIGIN_WHITELIST = ['localhost', 'skunk.propulsion-learn.ch', '127.0.0.1:3000']
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -125,7 +126,7 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 

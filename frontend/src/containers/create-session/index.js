@@ -37,14 +37,14 @@ class CreateSession extends Component {
         formdata.append('tracker', 1)
         const options = {
             headers: {
-                'Authentication': 'Bearer' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
             },
             body: formdata,
             method: 'POST'
         }
         delete options.headers['Content-Type'];
 
-        fetch('http://127.0.0.1:8000/backend/api/sessions/create/', options)
+        fetch('http://localhost:8000/backend/api/sessions/create/', options)
             .then(r => r.json())
             .then(r => console.log(r))
     }
