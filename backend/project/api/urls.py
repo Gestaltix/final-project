@@ -8,5 +8,4 @@ urlpatterns = [
 
     path('sessions/', include('project.api.sessions.urls')),
     path('teams/', include('project.api.teams.urls')),
-    path('files/', include('project.api.files.urls'))
 ]
