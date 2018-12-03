@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'project.api',
     'project.base',
     'project.base.apps.team',
-    'project.base.apps.trackers',
+    'project.base.apps.files',
     'project.base.apps.calculations',
     'rest_framework',
 ]

@@ -5,7 +5,7 @@ from django_extensions.db.models import TimeStampedModel
 class Data(TimeStampedModel):
     session = models.ForeignKey(
         verbose_name='session',
-        to='trackers.Session',
+        to='files.Session',
         related_name='data',
         on_delete=models.CASCADE,
     )

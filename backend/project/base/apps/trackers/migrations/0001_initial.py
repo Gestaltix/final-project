@@ -76,16 +76,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='session',
             name='tracker',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='trackers.Tracker', verbose_name='tracker'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='files.Tracker', verbose_name='tracker'),
         ),
         migrations.AddField(
             model_name='file',
             name='session',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='files', to='trackers.Session', verbose_name='session'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='files', to='files.Session', verbose_name='session'),
         ),
         migrations.AddField(
             model_name='data',
             name='session',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='trackers.Session', verbose_name='session'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='files.Session', verbose_name='session'),
         ),
     ]

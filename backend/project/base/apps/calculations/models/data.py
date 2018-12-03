@@ -17,7 +17,7 @@ class Data(TimeStampedModel):
     )
     session = models.ForeignKey(
         verbose_name='session',
-        to='trackers.Session',
+        to='files.Session',
         related_name='calculated_data',
         on_delete=models.CASCADE,
     )
@@ -60,7 +60,7 @@ class PowerCategroy(TimeStampedModel):
     )
     session = models.ForeignKey(
         verbose_name='session',
-        to='trackers.Session',
+        to='files.Session',
         related_name='calculated_power_category_data',
         on_delete=models.CASCADE,
     )

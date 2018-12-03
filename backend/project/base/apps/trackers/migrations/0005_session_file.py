@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('trackers', '0004_data_member'),
+        ('files', '0004_data_member'),
     ]
 
     operations = [

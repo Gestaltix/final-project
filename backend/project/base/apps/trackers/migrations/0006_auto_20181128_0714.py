@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('trackers', '0005_session_file'),
+        ('files', '0005_session_file'),
     ]
 
     operations = [

@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('team', '0001_initial'),
-        ('trackers', '0001_initial'),
+        ('files', '0001_initial'),
     ]
 
     operations = [
@@ -25,6 +25,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='data',
             name='session',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='data', to='trackers.Session', verbose_name='session'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='data', to='files.Session', verbose_name='session'),
         ),
     ]

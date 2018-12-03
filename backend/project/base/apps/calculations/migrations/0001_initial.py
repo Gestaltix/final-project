@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('team', '0002_team_user'),
-        ('trackers', '0006_auto_20181128_0714'),
+        ('files', '0006_auto_20181128_0714'),
     ]
 
     operations = [
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                 ('watt_kg', models.FloatField(verbose_name='latitude (deg)')),
                 ('load', models.IntegerField(verbose_name='player load (abs cumsum / 9.81)')),
                 ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='calculated_data', to='team.Member', verbose_name='member')),
-                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='calculated_data', to='trackers.Session', verbose_name='session')),
+                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='calculated_data', to='files.Session', verbose_name='session')),
             ],
             options={
                 'ordering': ('-modified', '-created'),
@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
                 ('critical_power', models.FloatField(verbose_name='critical power')),
                 ('total_player_load', models.FloatField(verbose_name='total player load')),
                 ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='team.Member', verbose_name='member')),
-                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='calculated_power_category_data', to='trackers.Session', verbose_name='session')),
+                ('session', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='calculated_power_category_data', to='files.Session', verbose_name='session')),
             ],
             options={
                 'ordering': ('-modified', '-created'),

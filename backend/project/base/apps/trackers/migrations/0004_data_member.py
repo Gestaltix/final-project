@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('team', '0002_team_user'),
-        ('trackers', '0003_auto_20181127_1739'),
+        ('files', '0003_auto_20181127_1739'),
     ]
 
     operations = [
