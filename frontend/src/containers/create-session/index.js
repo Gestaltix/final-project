@@ -46,7 +46,12 @@ class CreateSession extends Component {
 
         fetch('http://localhost:8000/backend/api/sessions/create/', options)
             .then(r => r.json())
-            .then(r => console.log(r))
+            // .then((r) => console.log(r))
+            .then(r => this.props.dispatch({
+                type: 'setFiles',
+                method: 'GET',
+                endpoint: `files/${r.id}`
+            }))
     }
     handleOnDrop = (e) => {
         this.setState({
