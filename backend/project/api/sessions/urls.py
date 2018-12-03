@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import DataSend, Sessions
+from .views import DataSend, SessionListView
 
 urlpatterns = [
+    path('', SessionListView.as_view()),
     path('create/', DataSend.as_view()),
-    path('', Sessions.as_view()),
 ]
