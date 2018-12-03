@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import connection from '../../connection';
 import { Button, TextField } from '@material-ui/core';
 import './index.css';
-import { Link } from 'react-router-dom';
 import TopBar from '../../components/topbar'
 
 class Member extends Component {

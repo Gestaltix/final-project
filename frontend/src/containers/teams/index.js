@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './index.css'
 import { Tabs, Tab, Button, TextField, Paper } from '@material-ui/core';
 import connection from '../../connection';
-import ChangeMemberForm from '../member';
 
 class Teams extends Component {
     render() {
@@ -15,7 +14,7 @@ class Teams extends Component {
                         <Paper className='TeamPaper'>
                             <Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>
                                 {this.props.teams.map((team) => {
-                                    return <Tab key={team.name} label={team.name} />
+                                    return <Tab key={team.id} label={team.name} />
                                 })}
                             </Tabs>
                             <div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>

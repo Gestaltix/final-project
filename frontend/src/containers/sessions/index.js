@@ -8,7 +8,10 @@ class Sessions extends Component {
     render() {
         return <div className='SessionsButton'>
             <Link to='/create-session' ><Button variant='outlined' color='secondary' >Make New Session</Button></Link>
-            {}
+            {/* {this.props.sessions.sessions?
+                this.props.sessions.sessions.map(session => {
+                    session.files.map
+                })} */}
         </div>
     }
     componentDidMount = () => {

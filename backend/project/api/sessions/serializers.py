@@ -7,11 +7,11 @@ from project.base.apps.trackers.models.session import File
 
 
 class SessionSerializer(serializers.ModelSerializer):
-    files = FileSerializer()
+    files = FileSerializer(read_only=True)
 
     class Meta:
         model = Session
-        fields = ['id', 'file', 'team', 'tracker', 'files', 'user']
+        fields = ['id', 'file', 'team', 'tracker', 'files']
         read_only_fields = fields
 
     def create(self, validated_data):

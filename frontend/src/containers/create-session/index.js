@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Paper, Button } from '@material-ui/core/'
 import './index.css';
 import TopBar from '../../components/topbar';
-import { FilePond } from 'react-filepond';
 import Dropzone from 'react-dropzone';
 
 class CreateSession extends Component {
@@ -46,12 +45,12 @@ class CreateSession extends Component {
 
         fetch('http://localhost:8000/backend/api/sessions/create/', options)
             .then(r => r.json())
-            // .then((r) => console.log(r))
-            .then(r => this.props.dispatch({
-                type: 'setFiles',
-                method: 'GET',
-                endpoint: `files/${r.id}`
-            })).then(this.props.history.replace('/'))
+            .then((r) => console.log(r))
+        // .then(r => this.props.dispatch({
+        //     type: 'setFiles',
+        //     method: 'GET',
+        //     endpoint: `files/${r.id}`
+        // })).then(this.props.history.replace('/'))
     }
     handleOnDrop = (e) => {
         this.setState({

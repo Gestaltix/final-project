@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import connection from '../../connection';
-import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 import { Tabs, Tab } from '@material-ui/core';
 import TopBar from '../../components/topbar';
