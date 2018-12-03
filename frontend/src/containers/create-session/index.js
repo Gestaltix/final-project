@@ -51,7 +51,7 @@ class CreateSession extends Component {
                 type: 'setFiles',
                 method: 'GET',
                 endpoint: `files/${r.id}`
-            }))
+            })).then(this.props.history.replace('/'))
     }
     handleOnDrop = (e) => {
         this.setState({
