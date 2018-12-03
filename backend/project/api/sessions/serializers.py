@@ -7,7 +7,7 @@ from project.base.apps.trackers.models.session import File
 
 
 class SessionSerializer(serializers.ModelSerializer):
-    files = FileSerializer(read_only=True)
+    files = FileSerializer(read_only=True, many=True)
 
     class Meta:
         model = Session
