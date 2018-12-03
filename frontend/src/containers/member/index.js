@@ -81,7 +81,7 @@ class Member extends Component {
     }
     componentDidMount = () => {
         this.props.dispatch({
-            type: 'setTeam',
+            type: 'setTeams',
             method: 'GET',
             endpoint: 'teams',
         }).then(() => {

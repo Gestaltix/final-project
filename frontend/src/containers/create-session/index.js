@@ -6,34 +6,56 @@ import TopBar from '../../components/topbar';
 import Dropzone from 'react-dropzone';
 
 class CreateSession extends Component {
-    constructor(props) {
+    constructor (props) {
         super(props)
         this.state = {
-            id: null,
-            package: null,
+            tracker: null,
+            team: null,
+            package: [],
         }
     }
-    render() {
-        return this.props.teams ?
-            <div>
-                <TopBar history={this.props.history} />
-                <Paper className='CreateSeshPaper'>Pick a team
-            <select onChange={this.handleChange}>
-                        <option selected disabled>Pick a team</option>
-                        {this.props.teams.map((team, index) => {
-                            return team.members.length !== 0 ? <option value={team.id} >{team.name}</option> : null
-                        })}
-                    </select>
-                </Paper>
-                {this.state.id ? <Dropzone onDrop={this.handleOnDrop} /> : null}
-                {this.state.package ? <Button className='NameForm' onClick={this.clickHandler}>Upload Files</Button> : null}
-            </div> : null
+
+    showDropzone = () => {
+        console.log('dropzone')
+        if (this.state.team && this.state.tracker) {
+            return (<Dropzone onDrop={this.handleOnDrop}/>)
+        }
+        return null
     }
+
+    render () {
+        return (
+        <div>
+            <TopBar history={this.props.history}/>
+            <Paper className='CreateSeshPaper'>Pick a tracker
+                <select onChange={this.handleChangeTracker}>
+                    <option disabled>Pick a tracker</option>
+                    {this.props.trackers.map((tracker, index) => {
+                        return <option key={tracker.id} value={tracker.id}>{tracker.name}</option>
+                    })}
+                </select>
+            </Paper>
+            <Paper className='CreateSeshPaper'>Pick a team
+                <select onChange={this.handleChangeTeam}>
+                    <option disabled>Pick a team</option>
+                    {this.props.teams.map((team, index) => {
+                        return <option key={team.id} value={team.id}>{team.name}</option>
+                    })}
+                </select>
+            </Paper>
+            {this.showDropzone()}
+            {this.state.package.length > 0 ?
+                <Button className='NameForm' onClick={this.clickHandler}>Upload Files</Button> : null}
+        </div>
+        )
+    }
+
     clickHandler = () => {
         const formdata = new FormData()
-        formdata.append('file', this.state.package.data[0])
-        formdata.append('team', this.state.id)
-        formdata.append('tracker', 1)
+        formdata.append('file', this.state.package[0])
+        formdata.append('team', this.state.team)
+        formdata.append('tracker', this.state.tracker)
+        formdata.append('tracker', 3)
         const options = {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -54,12 +76,14 @@ class CreateSession extends Component {
     }
     handleOnDrop = (e) => {
         this.setState({
-            package: { data: e, id: this.state.id }
+            package: e
         })
     }
-    handleChange = (e) => {
-        console.log(e.currentTarget.value)
-        this.setState({ id: parseInt(e.currentTarget.value) })
+    handleChangeTeam = (e) => {
+        this.setState({ team: parseInt(e.currentTarget.value) })
+    }
+    handleChangeTracker = (e) => {
+        this.setState({ tracker: parseInt(e.currentTarget.value) })
     }
     componentDidMount = () => {
         this.props.dispatch({
@@ -75,9 +99,14 @@ class CreateSession extends Component {
             }
         })
         this.props.dispatch({
-            type: 'setTeam',
+            type: 'setTeams',
             method: 'GET',
             endpoint: 'teams',
+        })
+        this.props.dispatch({
+            type: 'setTrackers',
+            method: 'GET',
+            endpoint: 'trackers',
         })
     }
 }
