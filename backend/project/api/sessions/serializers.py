@@ -2,14 +2,12 @@ from django.core.files.base import ContentFile
 from rest_framework import serializers
 from zipfile import ZipFile
 from project.api.files.serializers import FileSerializer
-from project.api.teams.serializers import TeamSerializer
-from project.base.apps.trackers.models import Session, Tracker
+from project.base.apps.trackers.models import Session
 from project.base.apps.trackers.models.session import File
 
 
 class SessionSerializer(serializers.ModelSerializer):
     files = FileSerializer(read_only=True, many=True)
-    team = TeamSerializer(read_only=True)
 
     class Meta:
         model = Session
