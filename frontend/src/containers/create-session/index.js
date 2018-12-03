@@ -58,14 +58,23 @@ class CreateSession extends Component {
         this.setState({ id: parseInt(e.currentTarget.value) })
     }
     componentDidMount = () => {
-        if (!localStorage.getItem('token')) { this.props.history.replace('/login') }
-        else {
-            this.props.dispatch({
-                type: 'setTeam',
-                method: 'GET',
-                endpoint: 'teams',
-            })
-        }
+        this.props.dispatch({
+            type: 'Auth',
+            method: 'POST',
+            endpoint: 'auth/token/verify',
+            body: { token: localStorage.getItem('token') }
+        }).then(() => {
+            console.log(this.props.auth.isAuthenticated)
+            if (this.props.auth.isAuthenticated === false) {
+                localStorage.removeItem('token')
+                this.props.history.replace('/login')
+            }
+        })
+        this.props.dispatch({
+            type: 'setTeam',
+            method: 'GET',
+            endpoint: 'teams',
+        })
     }
 }
 
