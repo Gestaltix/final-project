@@ -7,7 +7,7 @@ urlpatterns = [
     path('auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     path('sessions/', include('project.api.sessions.urls')),
+    path('trackers/', include('project.api.trackers.urls')),
     path('teams/', include('project.api.teams.urls')),
     path('files/', include('project.api.files.urls')),
-
 ]

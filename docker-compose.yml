@@ -19,11 +19,13 @@ services:
     ports:
       - "8000:8000"
       - "4777:22"
+      - "3000:3000"
     command: "/usr/sbin/sshd -D"
     depends_on:
       - postgres
     volumes:
       - ./backend:/backend
+      - ./frontend:/frontend
       - ./media-files:/media-files
       - ./static-files:/static-files
       - ./scripts:/scripts

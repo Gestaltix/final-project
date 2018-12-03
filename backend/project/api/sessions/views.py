@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
+
 from project.api.sessions.serializers import SessionSerializer
 from project.base.apps.trackers.models import Session
 
@@ -13,8 +14,9 @@ class DataSend(CreateAPIView):
     queryset = Session.objects.all()
 
 
-class Sessions(ListAPIView):
+class SessionListView(ListAPIView):
     serializer_class = SessionSerializer
+    queryset = Session.objects.all()
 
-    def get_queryset(self):
-        return Session.objects.filter(team__user=self.request.user)
+    def filter_queryset(self, queryset):
+        return queryset.filter(team__user=self.request.user)
