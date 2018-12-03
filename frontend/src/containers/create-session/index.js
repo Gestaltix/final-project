@@ -44,13 +44,7 @@ class CreateSession extends Component {
         delete options.headers['Content-Type'];
 
         fetch('http://localhost:8000/backend/api/sessions/create/', options)
-            .then(r => r.json())
-            .then((r) => console.log(r))
-        // .then(r => this.props.dispatch({
-        //     type: 'setFiles',
-        //     method: 'GET',
-        //     endpoint: `files/${r.id}`
-        // })).then(this.props.history.replace('/'))
+            .then(r => r.json()).then(() => this.props.history.replace('/'))
     }
     handleOnDrop = (e) => {
         this.setState({

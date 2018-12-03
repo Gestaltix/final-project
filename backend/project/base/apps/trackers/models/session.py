@@ -43,6 +43,11 @@ class File(TimeStampedModel):
         null=True,
         blank=True,
     )
+    # filename = models.CharField(
+    #     verbose_name='filename',
+    #     null=True,
+    #     blank=True,
+    # )
 
     def __str__(self):
         return str(self.session)
