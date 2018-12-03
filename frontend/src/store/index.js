@@ -5,5 +5,6 @@ import { token } from './reducers/token';
 import { teams } from './reducers/teams';
 import { auth } from './reducers/auth';
 import { sessions } from './reducers/sessions';
+import { trackers } from './reducers/trackers';
 
-export default createStore(combineReducers({ sessions, nonFetchData, token, teams, auth }), applyMiddleware(customMiddleWare))
+export default createStore(combineReducers({ sessions, nonFetchData, token, teams, auth, trackers }), applyMiddleware(customMiddleWare))

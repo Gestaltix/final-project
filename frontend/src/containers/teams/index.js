@@ -56,7 +56,7 @@ class Teams extends Component {
     }
     componentDidMount = () => {
         this.props.dispatch({
-            type: 'setTeam',
+            type: 'setTeams',
             method: 'GET',
             endpoint: 'teams',
         })

@@ -1,13 +1,13 @@
 .TopBar {
     background-color: #212121;
     color: white;
-    padding-bottom: 16.5px;
-    padding-top: 16.5px;
+    padding: 16px;
+    height: 80px;
     display: flex;
+    box-sizing: border-box;
     justify-content: space-between;
 }
 
 .TopBarLogo {
-    height: 59px;
-    width: auto;
+    width: 80px;
 }

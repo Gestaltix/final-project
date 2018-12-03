@@ -1,6 +1,6 @@
-export const teams = (state = [], action) => {
+export const trackers = (state = [], action) => {
     switch (action.type) {
-        case 'setTeams':
+        case 'setTrackers':
             return action.data
         default:
             return state

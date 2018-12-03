@@ -7,13 +7,9 @@ import Logout from '../../containers/logout';
 class TopBar extends Component {
     render() {
         return <div className='TopBar'>
-            <Button variant='outlined' color='primary' onClick={this.clickHandler}>Home</Button>
-            <img src={Logo} className='TopBarLogo' alt='Skunk Sports'></img>
+            <img src={Logo} className='TopBarLogo' alt='Skunk Sports'/>
             <Logout history={this.props.history} />
         </div>
-    }
-    clickHandler = () => {
-        this.props.history.replace('/')
     }
 }
 

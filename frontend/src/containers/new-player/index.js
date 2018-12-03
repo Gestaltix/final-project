@@ -81,7 +81,7 @@ class NewPlayer extends Component {
             }
         })
         this.props.dispatch({
-            type: 'setTeam',
+            type: 'setTeams',
             method: 'GET',
             endpoint: 'teams',
         })
