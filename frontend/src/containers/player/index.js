@@ -31,13 +31,43 @@ class Team extends Component {
                         data={[
                             {
                                 x: this.props.x,
-                                y: this.props.pLoad,
-                                type: 'scatter',
+                                y: this.props.aReserve,
+                                type: 'bar',
                                 mode: 'lines+points',
+                                name: 'Anareobic Reserve',
+                                marker: { color: 'blue' },
+                            },
+                        ]}
+                        layout={{ width: '100%', height: '400', title: 'A Fancy Plot' }}
+                    /> : null}
+                {this.props.x.length !== 0 ?
+                    <Plot
+                        data={[
+                            {
+                                x: this.props.x,
+                                y: this.props.pLoad,
+                                type: 'bar',
+                                mode: 'lines+points',
+                                name: 'Player Load',
                                 marker: { color: 'red' },
                             },
                         ]}
-                        layout={{ width: 320, height: 240, title: 'A Fancy Plot' }}
+                        layout={{ width: '100%', height: '400', title: 'A Fancy Plot' }}
+                    /> : null}
+                {this.props.x.length !== 0 ?
+                    <Plot
+                        data={[
+
+                            {
+                                x: this.props.x,
+                                y: this.props.cPower,
+                                type: 'bar',
+                                mode: 'lines+points',
+                                name: 'Critical Power',
+                                marker: { color: 'purple' },
+                            },
+                        ]}
+                        layout={{ width: '100%', height: '400', title: 'A Fancy Plot' }}
                     /> : null}
             </div>
         );
@@ -49,7 +79,7 @@ const mstp = (state, props) => {
         player: state.player,
         playerGraph: state.graphs.playerGraph,
         x: state.graphs.playerGraph ? state.graphs.playerGraph.map(d => d.time) : [],
-        pLoad: state.graphs.playerGraph ? state.graphs.playerGraph.map(d => d.load) : [],
+        pLoad: state.graphs.playerGraph ? state.graphs.playerGraph.map(d => d.total_player_load) : [],
         cPower: state.graphs.playerGraph ? state.graphs.playerGraph.map(d => d.critical_power) : [],
         aReserve: state.graphs.playerGraph ? state.graphs.playerGraph.map(d => d.anareobic_reserve) : [],
     }
