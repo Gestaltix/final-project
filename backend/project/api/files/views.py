@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView
 from project.api.files.serializers import FileSerializer
-from project.base.apps.trackers.models.session import File
+from project.base.apps.trackers.models.file import File
 
 
 class FilesFromSessions(ListAPIView):

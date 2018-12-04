@@ -2,8 +2,8 @@ from django.core.files.base import ContentFile
 from rest_framework import serializers
 from zipfile import ZipFile
 from project.api.files.serializers import FileSerializer
-from project.base.apps.trackers.models import Session, Tracker
-from project.base.apps.trackers.models.session import File
+from project.base.apps.trackers.models import Session
+from project.base.apps.trackers.models.file import File
 
 
 class SessionSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ['id', 'file', 'team', 'tracker', 'files']
+        fields = ['id', 'file', 'team', 'tracker', 'files', 'data_load_in_progress']
         read_only_fields = ['id']
 
     def create(self, validated_data):
