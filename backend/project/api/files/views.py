@@ -12,6 +12,4 @@ class FilesFromSessions(generics.ListAPIView):
 
 class MapFileToMember(generics.RetrieveUpdateAPIView):
     serializer_class = FileSerializer
-
-    def get_queryset(self):
-        File.objects.filter(session__team__user=self.request.user)
+    queryset = File.objects.all()

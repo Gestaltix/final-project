@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import customMiddleWare from './middleware';
 import { nonFetchData } from './reducers/non-fetch-data';
 import { token } from './reducers/token';
@@ -7,4 +7,6 @@ import { auth } from './reducers/auth';
 import { sessions } from './reducers/sessions';
 import { trackers } from './reducers/trackers';
 
-export default createStore(combineReducers({ sessions, nonFetchData, token, teams, auth, trackers }), applyMiddleware(customMiddleWare))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export default createStore(combineReducers({ sessions, nonFetchData, token, teams, auth, trackers }), composeEnhancers(applyMiddleware(customMiddleWare)))

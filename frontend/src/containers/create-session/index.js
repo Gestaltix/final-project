@@ -4,6 +4,7 @@ import { Paper, Button } from '@material-ui/core/'
 import './index.css';
 import TopBar from '../../components/topbar';
 import Dropzone from 'react-dropzone';
+import { Redirect } from 'react-router-dom';
 
 class CreateSession extends Component {
     constructor(props) {
@@ -65,7 +66,23 @@ class CreateSession extends Component {
         delete options.headers['Content-Type'];
 
         fetch('http://localhost:8000/backend/api/sessions/create/', options)
-            .then(r => r.json()).then(() => this.props.history.replace('/'))
+            .then(r => r.json())
+            .then((r) => {
+                console.log(r)
+                this.props.dispatch({
+                    type: 'setSession',
+                    data: r
+                })
+                return r
+            })
+            .then(r => {
+                this.props.dispatch({
+                    method: 'GET',
+                    endpoint: `teams/${r.team}`,
+                    type: 'setSessionTeam'
+                })
+                this.props.history.replace(`/sessions/${r.id}`)
+            })
     }
     handleOnDrop = (e) => {
         this.setState({
