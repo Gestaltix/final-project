@@ -36,7 +36,7 @@ class LoadSessionData(GenericAPIView):
     def filter_queryset(self, queryset):
         return queryset.filter(team__user=self.request.user)
 
-    def post(self):
+    def post(self, request, **kwargs):
         session = self.get_object()
         try:
             session.load_data()

@@ -6,3 +6,9 @@
 .MapSessionRow > * {
     margin: 10px;
 }
+
+.SessionButton {
+    margin: 0 auto;
+    display: inline;
+    text-align: center
+}

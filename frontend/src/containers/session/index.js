@@ -32,16 +32,24 @@ class MapSession extends Component {
                     </div>
                 })}
             </div>
+            <div className='SessionButton'><Button color='primary' variant='contained' onClick={this.handleCLick}>Load Data</Button></div>
         </div>
     }
     handleChange = (e, member) => {
         this.props.dispatch({
-            type: null,
+            type: 'changeFile',
             endpoint: `files/update/${e.currentTarget.value}`,
             body: {
                 member: member
             },
             method: 'PUT'
+        })
+    }
+    handleCLick = () => {
+        this.props.dispatch({
+            type: null,
+            endpoint: `sessions/load-data/${this.props.match.params.id}`,
+            method: 'POST'
         })
     }
     componentDidMount = () => {
