@@ -123,9 +123,10 @@ class GetPlayerData(GenericAPIView):
     def get(self, request, **kwargs):
         member = self.get_object()
         result = []
-        for datapoint in member.calculated_power_category_data.all().order_by('time'):
+        # Filter only for one category because the data is the same for all of them
+        for datapoint in member.calculated_power_category_data.filter(category=-1).order_by('created'):
             result.append({
-                'time': datapoint.time,
+                'time': datapoint.session.created,
                 'anareobic_reserve': datapoint.anareobic_reserve,
                 'critical_power': datapoint.critical_power,
                 'total_player_load': datapoint.total_player_load,
