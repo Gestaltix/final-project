@@ -34,6 +34,8 @@ class Command(BaseCommand):
                         'speed',
                     )
                     df = pandas.DataFrame.from_dict(list(session_data))
+                    # There were duplicate times in the dataframe, causing inf accelerations
+                    df = df.drop_duplicates(subset='time')
                     df['velocity'] = df['speed'] / 3.6
                     df['acceleration'] = (df['velocity'] - df['velocity'].shift(1)) / pandas.to_timedelta(df['time'] - df['time'].shift(1), unit='s').dt.total_seconds()  # noqa
                     df.set_index("time", inplace=True)

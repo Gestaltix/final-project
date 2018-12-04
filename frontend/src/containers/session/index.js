@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core'
+import { Button, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core'
 import { connect } from 'react-redux';
 import TopBar from '../../components/topbar';
+import Plot from 'react-plotly.js';
 import './index.css'
 
 class MapSession extends Component {
@@ -41,6 +42,28 @@ class MapSession extends Component {
                         <Button color='primary' variant='contained' onClick={this.handleCalculate}>Calculate Data</Button>
                         <Button color='primary' variant='contained' onClick={this.handlePowerCategories}>Calculate Power Categories</Button>
                     </div> : null : null}
+            <Button onClick={this.makeGraph}>Make Graph</Button>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            Maximum Power
+                        </TableCell>
+                        <TableCell>
+                            Enormous Power
+                        </TableCell>
+                        <TableCell>
+                            Medium Power
+                        </TableCell>
+                        <TableCell>
+                            Medium Power
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+
+                </TableBody>
+            </Table>
         </div>
     }
     handleChange = (e, member) => {
@@ -53,6 +76,14 @@ class MapSession extends Component {
             method: 'PUT'
         })
             .then(() => this.componentDidMount())
+    }
+    makeGraph = () => {
+        console.log('making Graph...')
+        this.props.dispatch({
+            type: 'setTeamGraph',
+            endpoint: `sessions/get-power-categories-from-session/${this.props.match.params.id}`,
+            method: 'GET',
+        })
     }
     handlePowerCategories = () => {
         this.props.dispatch({

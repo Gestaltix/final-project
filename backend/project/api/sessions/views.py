@@ -1,9 +1,11 @@
+import pandas
+
 from django.contrib.auth import get_user_model
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
-from project.base.apps.calculations.models.data import Data
-from project.api.sessions.serializers import SessionSerializer, CalculatedDataSerializer
+from project.base.apps.calculations.models.data import Data, PowerCategroy
+from project.api.sessions.serializers import SessionSerializer, CalculatedDataSerializer, PowerCategorySerializer
 from project.base.apps.trackers.models import Session
 
 User = get_user_model()
@@ -88,9 +90,19 @@ class CalculatePowerCategoriesSession(GenericAPIView):
 
 
 class GetDataFromSession(GenericAPIView):
-    serializer_class = CalculatedDataSerializer
     queryset = Data.objects.all()
 
     def get(self, request, **kwargs):
-        qs = self.queryset.filter(session_id=self.kwargs.get('pk'))
-        return Response(self.serializer_class(qs, many=True).data)
+        data = self.queryset.filter(session_id=self.kwargs.get('pk')).values()
+        df = pandas.DataFrame.from_dict(list(data))
+        df.set_index("time", inplace=True)
+        df = df.resample("20s").mean()
+        df.reset_index(inplace=True)
+        return Response(df.to_dict('records'))
+
+
+class GetPowerCategoriesFromSession(ListAPIView):
+    serializer_class = PowerCategorySerializer
+
+    def get_queryset(self):
+        return PowerCategroy.objects.filter(session__id=self.kwargs.get('pk')).order_by('member', '-category')

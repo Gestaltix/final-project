@@ -4,7 +4,7 @@ from zipfile import ZipFile
 from project.api.files.serializers import FileSerializer
 from project.base.apps.trackers.models import Session
 from project.base.apps.trackers.models.file import File
-from project.base.apps.calculations.models.data import Data
+from project.base.apps.calculations.models.data import Data, PowerCategroy
 
 
 class SessionSerializer(serializers.ModelSerializer):
@@ -38,3 +38,10 @@ class CalculatedDataSerializer(serializers.ModelSerializer):
         fields = ['velocity', 'acceleration',
                   'em', 'es', 'watt_kg', 'load',
                   'member', 'session', 'category', 'time']
+
+
+class PowerCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PowerCategroy
+        fields = ['category', 'session', 'member', 'total_energy_kj_per_kg', 'total_time_sec', 'anareobic_reserve', 'critical_power', 'total_player_load']
