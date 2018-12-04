@@ -4,6 +4,7 @@ from zipfile import ZipFile
 from project.api.files.serializers import FileSerializer
 from project.base.apps.trackers.models import Session
 from project.base.apps.trackers.models.file import File
+from project.base.apps.calculations.models.data import Data
 
 
 class SessionSerializer(serializers.ModelSerializer):
@@ -28,3 +29,12 @@ class SessionSerializer(serializers.ModelSerializer):
                 )
                 file.file.save(name=name, content=ContentFile(input_zip.read(name)))
         return session
+
+
+class CalculatedDataSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Data
+        fields = ['velocity', 'acceleration',
+                  'em', 'es', 'watt_kg', 'load',
+                  'member', 'session', 'category', 'time']

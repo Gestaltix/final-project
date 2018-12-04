@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import DataSend, SessionListView, ParticularSession, LoadSessionData, CalculateSession, \
-    CalculatePowerCategoriesSession
+    CalculatePowerCategoriesSession, GetDataFromSession
 
 urlpatterns = [
     path('', SessionListView.as_view()),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('load-data/<int:pk>/', LoadSessionData.as_view()),
     path('calculate-data/<int:pk>/', CalculateSession.as_view()),
     path('calculate-power-categories/<int:pk>/', CalculatePowerCategoriesSession.as_view()),
+    path('get-data-from-session/<int:pk>/', GetDataFromSession.as_view()),
 ]

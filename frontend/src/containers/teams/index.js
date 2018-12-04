@@ -17,8 +17,8 @@ class Teams extends Component {
                                     return <Tab key={team.id} label={team.name} />
                                 })}
                             </Tabs>
-                            <div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>
-                            <Button onClick={this.clickHandler}>Delete Current Team</Button>
+                            <div className='NameForm'><p>Name:</p> <TextField /></div>
+                            <Button onClick={this.clickHandler}>Delete Current Team</Button><Button onClick={this.updateHandler}></Button>
                         </Paper>
                         <h2 className='NameForm'>Players</h2>
                         <div className='NameForm'><Link to='/new-player'><Button variant='outlined'>Add Player</Button></Link></div>

@@ -15,7 +15,7 @@ class MapSession extends Component {
         }
     }
     render() {
-        console.log(this.state.files)
+        console.log(this.props.sessions)
         return <div>
             <TopBar history={this.props.history} />
             <h2>Map players to files...</h2>
@@ -32,18 +32,43 @@ class MapSession extends Component {
                     </div>
                 })}
             </div>
-            <div className='SessionButton'><Button color='primary' variant='contained' onClick={this.handleCLick}>Load Data</Button></div>
+            {this.props.sessions.selectedSession ?
+                !this.props.sessions.selectedSession.data_load_in_progress
+                    && !this.props.sessions.selectedSession.data_calculation_in_progress
+                    && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ?
+                    <div className='SessionButtons'>
+                        <Button color='primary' variant='contained' onClick={this.handleCLick}>Load Data</Button>
+                        <Button color='primary' variant='contained' onClick={this.handleCalculate}>Calculate Data</Button>
+                        <Button color='primary' variant='contained' onClick={this.handlePowerCategories}>Calculate Power Categories</Button>
+                    </div> : null : null}
         </div>
     }
     handleChange = (e, member) => {
         this.props.dispatch({
-            type: 'changeFile',
+            type: null,
             endpoint: `files/update/${e.currentTarget.value}`,
             body: {
                 member: member
             },
             method: 'PUT'
         })
+            .then(() => this.componentDidMount())
+    }
+    handlePowerCategories = () => {
+        this.props.dispatch({
+            type: null,
+            endpoint: `sessions/calculate-power-categories/${this.props.match.params.id}`,
+            method: 'POST'
+        })
+            .then(() => this.componentDidMount())
+    }
+    handleCalculate = () => {
+        this.props.dispatch({
+            type: null,
+            endpoint: `sessions/calculate-data/${this.props.match.params.id}`,
+            method: 'POST'
+        })
+            .then(() => this.componentDidMount())
     }
     handleCLick = () => {
         this.props.dispatch({
@@ -51,6 +76,7 @@ class MapSession extends Component {
             endpoint: `sessions/load-data/${this.props.match.params.id}`,
             method: 'POST'
         })
+            .then(() => this.componentDidMount())
     }
     componentDidMount = () => {
         this.props.dispatch({
@@ -71,6 +97,7 @@ const mapStateToProps = (state) => {
         files: state.sessions.selectedSession ? state.sessions.selectedSession.files : [],
         members: state.sessions.selectedSession
             && state.teams.length !== 0 ? state.teams.find(team => team.id === state.sessions.selectedSession.team).members : [],
+        sessions: state.sessions
     }
 }
 
