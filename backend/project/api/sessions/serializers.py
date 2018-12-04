@@ -2,6 +2,7 @@ from django.core.files.base import ContentFile
 from rest_framework import serializers
 from zipfile import ZipFile
 from project.api.files.serializers import FileSerializer
+from project.api.teams.serializers import TeamSerializer
 from project.base.apps.trackers.models import Session
 from project.base.apps.trackers.models.session import File
 
@@ -23,6 +24,7 @@ class SessionSerializer(serializers.ModelSerializer):
             if '.csv' in name and not '__MACOSX' in name:
                 file = File.objects.create(
                     session=session,
+                    filename=name,
                 )
                 file.file.save(name=name, content=ContentFile(input_zip.read(name)))
         return session
