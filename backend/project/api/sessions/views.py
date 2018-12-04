@@ -6,6 +6,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from project.base.apps.calculations.models.data import Data, PowerCategroy
 from project.api.sessions.serializers import SessionSerializer, CalculatedDataSerializer, PowerCategorySerializer
+from project.base.apps.team.models import Team, Member
 from project.base.apps.trackers.models import Session
 
 User = get_user_model()
@@ -89,7 +90,7 @@ class CalculatePowerCategoriesSession(GenericAPIView):
         })
 
 
-class GetDataFromSession(GenericAPIView):
+class GetSessionData(GenericAPIView):
     queryset = Data.objects.all()
 
     def get(self, request, **kwargs):
@@ -101,7 +102,7 @@ class GetDataFromSession(GenericAPIView):
         return Response(df.to_dict('records'))
 
 
-class GetPowerCategoriesFromSession(GenericAPIView):
+class GetSessionPowerCategories(GenericAPIView):
     serializer_class = PowerCategorySerializer
     queryset = Session.objects.all()
 
@@ -113,4 +114,20 @@ class GetPowerCategoriesFromSession(GenericAPIView):
                 member.calculated_power_category_data.filter(session=session),
                 many=True
             ).data
+        return Response(result)
+
+
+class GetPlayerData(GenericAPIView):
+    queryset = Member.objects.all()
+
+    def get(self, request, **kwargs):
+        member = self.get_object()
+        result = []
+        for datapoint in member.calculated_power_category_data.all().order_by('time'):
+            result.append({
+                'time': datapoint.time,
+                'anareobic_reserve': datapoint.anareobic_reserve,
+                'critical_power': datapoint.critical_power,
+                'total_player_load': datapoint.total_player_load,
+            })
         return Response(result)

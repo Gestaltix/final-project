@@ -32,7 +32,6 @@ class SessionSerializer(serializers.ModelSerializer):
 
 
 class CalculatedDataSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Data
         fields = ['velocity', 'acceleration',
@@ -41,7 +40,7 @@ class CalculatedDataSerializer(serializers.ModelSerializer):
 
 
 class PowerCategorySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = PowerCategroy
-        fields = ['category', 'session', 'member', 'total_energy_kj_per_kg', 'total_time_sec', 'anareobic_reserve', 'critical_power', 'total_player_load']
+        fields = ['category', 'session', 'member', 'total_energy_kj_per_kg', 'total_time_sec', 'anareobic_reserve',
+                  'critical_power', 'total_player_load']
