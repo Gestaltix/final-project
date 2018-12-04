@@ -1,34 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Home from './containers/home';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
-import store from './store';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './containers/login';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import Skunk from './themes/skunk';
-import CreateSession from './containers/create-session';
-import NewTeam from './containers/new-team';
-import NewPlayer from './containers/new-player';
-import Member from './containers/member';
-import Session from './containers/session';
+import App from './containers/app'
+import { MuiThemeProvider } from "@material-ui/core";
+import Skunk from "./themes/skunk";
+import Provider from "react-redux/es/components/Provider";
+import store from "./store";
 
 ReactDOM.render(
     <MuiThemeProvider theme={Skunk}>
         <Provider store={store}>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/new-team' component={NewTeam} />
-                    <Route exact path='/new-player' component={NewPlayer} />
-                    <Route exact path='/create-session' component={CreateSession} />
-                    <Route exact path='/players/:id' component={Member} />
-                    <Route exact path='/sessions/:id' component={Session} />
-                </Switch>
-            </BrowserRouter>
+            <App/>
         </Provider>
     </MuiThemeProvider>
     , document.getElementById('root'));
