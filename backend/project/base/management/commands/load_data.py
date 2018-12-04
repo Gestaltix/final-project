@@ -22,6 +22,8 @@ class Command(BaseCommand):
 
                 # Loop over files in session
                 for file in session.files.all():
+                    if not file.member:
+                        continue
                     df = pandas.read_csv(file.file.path, skiprows=5, sep=',')
                     # Reformat to datetime
                     df[u'time'] = pandas.to_datetime(df[u'time[ISO-UTC]'], format='%Y%m%dT%H%M%S%f', utc=True)
