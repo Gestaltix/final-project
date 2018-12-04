@@ -16,7 +16,7 @@ class MapSession extends Component {
         }
     }
     render() {
-        console.log(this.props.sessions)
+        console.log(this.props)
         return <div>
             <TopBar history={this.props.history} />
             <h2>Map players to files...</h2>
@@ -42,10 +42,13 @@ class MapSession extends Component {
                         <Button color='primary' variant='contained' onClick={this.handleCalculate}>Calculate Data</Button>
                         <Button color='primary' variant='contained' onClick={this.handlePowerCategories}>Calculate Power Categories</Button>
                     </div> : null : null}
-            <Button onClick={this.makeGraph}>Make Graph</Button>
+            <h2 className='NameForm'>Total Energy Per Zone</h2>
             <Table>
                 <TableHead>
                     <TableRow>
+                        <TableCell>
+                            Name
+                        </TableCell>
                         <TableCell>
                             Maximum Power
                         </TableCell>
@@ -56,14 +59,56 @@ class MapSession extends Component {
                             Medium Power
                         </TableCell>
                         <TableCell>
-                            Medium Power
+                            Least Power
                         </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-
+                    {this.props.teamGraph ?
+                        Object.keys(this.props.teamGraph).map(key => {
+                            return <TableRow>
+                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                {this.props.teamGraph[key].map(dataPoint => {
+                                    return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
+                                })}
+                            </TableRow>
+                        }) : null}
                 </TableBody>
             </Table>
+            <h2 className='NameForm'>Total Time Per Zone</h2>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            Name
+                        </TableCell>
+                        <TableCell>
+                            Maximum Power
+                        </TableCell>
+                        <TableCell>
+                            Enormous Power
+                        </TableCell>
+                        <TableCell>
+                            Medium Power
+                        </TableCell>
+                        <TableCell>
+                            Least Power
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {this.props.teamGraph ?
+                        Object.keys(this.props.teamGraph).map(key => {
+                            return <TableRow>
+                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                {this.props.teamGraph[key].map(dataPoint => {
+                                    return <TableCell>{dataPoint.total_time_sec}</TableCell>
+                                })}
+                            </TableRow>
+                        }) : null}
+                </TableBody>
+            </Table>
+            <Button onClick={this.makeGraph}>Populate Graphs</Button>
         </div>
     }
     handleChange = (e, member) => {
@@ -128,7 +173,8 @@ const mapStateToProps = (state) => {
         files: state.sessions.selectedSession ? state.sessions.selectedSession.files : [],
         members: state.sessions.selectedSession
             && state.teams.length !== 0 ? state.teams.find(team => team.id === state.sessions.selectedSession.team).members : [],
-        sessions: state.sessions
+        sessions: state.sessions,
+        teamGraph: state.graphs.teamGraph
     }
 }
 

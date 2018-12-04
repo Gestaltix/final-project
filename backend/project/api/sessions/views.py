@@ -103,12 +103,14 @@ class GetDataFromSession(GenericAPIView):
 
 class GetPowerCategoriesFromSession(GenericAPIView):
     serializer_class = PowerCategorySerializer
+    queryset = Session.objects.all()
 
     def get(self, request, **kwargs):
         session = self.get_object()
         result = {}
-        for member in session.team.members:
+        for member in session.team.members.all():
             result[member.id] = self.serializer_class(
-                member.calculated_power_category_data.filter(session=session)
+                member.calculated_power_category_data.filter(session=session),
+                many=True
             ).data
         return Response(result)
