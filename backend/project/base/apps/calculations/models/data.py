@@ -67,6 +67,7 @@ class PowerCategroy(TimeStampedModel):
     member = models.ForeignKey(
         verbose_name='member',
         to='team.Member',
+        related_name='calculated_power_category_data',
         on_delete=models.CASCADE,
     )
     total_energy_kj_per_kg = models.FloatField(

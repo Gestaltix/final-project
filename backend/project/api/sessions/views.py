@@ -101,8 +101,14 @@ class GetDataFromSession(GenericAPIView):
         return Response(df.to_dict('records'))
 
 
-class GetPowerCategoriesFromSession(ListAPIView):
+class GetPowerCategoriesFromSession(GenericAPIView):
     serializer_class = PowerCategorySerializer
 
-    def get_queryset(self):
-        return PowerCategroy.objects.filter(session__id=self.kwargs.get('pk')).order_by('member', '-category')
+    def get(self, request, **kwargs):
+        session = self.get_object()
+        result = {}
+        for member in session.team.members:
+            result[member.id] = self.serializer_class(
+                member.calculated_power_category_data.filter(session=session)
+            ).data
+        return Response(result)
