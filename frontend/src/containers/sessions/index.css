@@ -1,5 +1,24 @@
 .SessionsButton {
     display: flex;
-    justify-content: space-around;
-    margin: 2%;
+    flex-direction: column;
+    margin: 2% auto;
 }
+
+.SessionsButton > * {
+    margin: 2% auto;
+    padding: 2%;
+}
+
+.SessionsPaper {
+    padding: 10px;
+}
+
+.SessionsListItem {
+    margin: 1px;
+    background-color: rgb(246, 247, 234);
+}
+
+.SessionsListItem:hover {
+    background-color: rgb(228, 229, 215);
+}
+

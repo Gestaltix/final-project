@@ -13,6 +13,7 @@ import CreateSession from './containers/create-session';
 import NewTeam from './containers/new-team';
 import NewPlayer from './containers/new-player';
 import Member from './containers/member';
+import Session from './containers/session';
 
 ReactDOM.render(
     <MuiThemeProvider theme={Skunk}>
@@ -25,6 +26,7 @@ ReactDOM.render(
                     <Route exact path='/new-player' component={NewPlayer} />
                     <Route exact path='/create-session' component={CreateSession} />
                     <Route exact path='/players/:id' component={Member} />
+                    <Route exact path='/sessions/:id' component={Session} />
                 </Switch>
             </BrowserRouter>
         </Provider>

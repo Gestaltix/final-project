@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import CreateAPIView, ListAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 
@@ -21,6 +21,13 @@ class SessionListView(ListAPIView):
 
     def filter_queryset(self, queryset):
         return queryset.filter(team__user=self.request.user)
+
+
+class ParticularSession(RetrieveAPIView):
+    serializer_class = SessionSerializer
+
+    def get_queryset(self):
+        return Session.objects.filter(team__user=self.request.user)
 
 
 class LoadSessionData(GenericAPIView):
