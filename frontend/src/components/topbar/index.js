@@ -5,9 +5,12 @@ import './index.css';
 import Logout from '../../containers/logout';
 
 class TopBar extends Component {
+    back = () => {
+        this.props.history.replace('/')
+    }
     render() {
         return <div className='TopBar'>
-            <img src={Logo} className='TopBarLogo' alt='Skunk Sports'/>
+            <img src={Logo} onClick={this.back} className='TopBarLogo' alt='Skunk Sports'/>
             <Logout history={this.props.history} />
         </div>
     }

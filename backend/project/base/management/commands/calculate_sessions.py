@@ -6,7 +6,6 @@ from django.core.management.base import BaseCommand
 
 from project.base.apps.calculations.models import Data as CalculationData
 from project.base.apps.tasks.models import CalculateTask
-from project.base.apps.trackers.models import Session
 
 
 class Command(BaseCommand):
