@@ -7,7 +7,8 @@ import { auth } from './reducers/auth';
 import { sessions } from './reducers/sessions';
 import { trackers } from './reducers/trackers';
 import { graphs } from './reducers/graphs';
+import { player } from './reducers/player';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default createStore(combineReducers({ graphs, sessions, nonFetchData, token, teams, auth, trackers }), composeEnhancers(applyMiddleware(customMiddleWare)))
+export default createStore(combineReducers({ player, graphs, sessions, nonFetchData, token, teams, auth, trackers }), composeEnhancers(applyMiddleware(customMiddleWare)))

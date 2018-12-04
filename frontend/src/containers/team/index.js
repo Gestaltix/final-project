@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import './index.css'
 import connect from "react-redux/es/connect/connect";
 import TopBar from "../../components/topbar";
-import { ListItem, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemText, Button } from '@material-ui/core';
 
 class Team extends Component {
     selectMember = (memberId) => () => {
         this.props.history.push(`/player/${memberId}`)
+    }
+    handleClick = () => {
+
     }
     render() {
         return (
