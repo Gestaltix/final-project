@@ -24,6 +24,32 @@ services:
       - ./media-files:/media-files
       - ./static-files:/static-files
 
+  calculate_sessions:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
+    restart: always
+    env_file:
+      - prod.env
+    command: "python manage.py calculate_sessions"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/backend
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+
+  calculate_power_categories:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
+    restart: always
+    env_file:
+      - prod.env
+    command: "python manage.py calculate_power_categories"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/backend
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+
   backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
     restart: always

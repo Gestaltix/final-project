@@ -47,3 +47,41 @@ class LoadSessionData(GenericAPIView):
         return Response({
             'details': 'Loading in progress!',
         })
+
+
+class CalculateSession(GenericAPIView):
+    queryset = Session.objects.all()
+
+    def filter_queryset(self, queryset):
+        return queryset.filter(team__user=self.request.user)
+
+    def post(self):
+        session = self.get_object()
+        try:
+            session.calculate_data()
+        except Exception as e:
+            return Response({
+                'details': e.message,
+            }, 400)
+        return Response({
+            'details': 'Calculation in progress!',
+        })
+
+
+class CalculatePowerCategoriesSession(GenericAPIView):
+    queryset = Session.objects.all()
+
+    def filter_queryset(self, queryset):
+        return queryset.filter(team__user=self.request.user)
+
+    def post(self):
+        session = self.get_object()
+        try:
+            session.calculate_power_categories()
+        except Exception as e:
+            return Response({
+                'details': e.message,
+            }, 400)
+        return Response({
+            'details': 'Calculation in progress!',
+        })
