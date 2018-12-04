@@ -1,0 +1,8 @@
+.MapSession {
+    display: flex;
+    justify-content: space-around;
+}
+
+.MapSessionRow > * {
+    margin: 10px;
+}

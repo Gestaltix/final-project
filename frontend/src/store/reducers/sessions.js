@@ -1,18 +1,15 @@
 export const sessions = (state = {
     team: null,
-    selectedSession: [],
-    sessions: [],
-    sessionFiles: []
+    selectedSession: null,
+    sessions: []
 }, action) => {
     const newState = { ...state }
     switch (action.type) {
         case 'setSessionTeam':
-
-        case 'setSession':
-            newState.selectedSession = action.data[0]
+            newState.team = action.data
             return newState
-        case 'setFiles':
-            newState.sessionFiles = action.data
+        case 'setSession':
+            newState.selectedSession = action.data
             return newState
         case 'setSessions':
             newState.sessions = action.data
