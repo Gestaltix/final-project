@@ -4,9 +4,9 @@ from django.contrib.auth import get_user_model
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
-from project.base.apps.calculations.models.data import Data, PowerCategroy
-from project.api.sessions.serializers import SessionSerializer, CalculatedDataSerializer, PowerCategorySerializer
-from project.base.apps.team.models import Team, Member
+from project.base.apps.calculations.models.data import Data
+from project.api.sessions.serializers import SessionSerializer, PowerCategorySerializer
+from project.base.apps.team.models import Member
 from project.base.apps.trackers.models import Session
 
 User = get_user_model()
