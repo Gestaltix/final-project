@@ -11,7 +11,8 @@ class SessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Session
-        fields = ['id', 'file', 'team', 'tracker', 'files', 'data_load_in_progress']
+        fields = ['id', 'file', 'team', 'tracker', 'files', 'data_load_in_progress', 'data_calculation_in_progress',
+                  'power_categories_calculation_in_progress']
         read_only_fields = ['id']
 
     def create(self, validated_data):
