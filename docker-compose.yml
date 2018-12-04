@@ -11,6 +11,19 @@ services:
     ports:
       - "5432:5432"
 
+  load_data:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
+    restart: always
+    env_file:
+      - prod.env
+    command: "python manage.py load_data"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/backend
+      - ./media-files:/media-files
+      - ./static-files:/static-files
+
   backend:
     image: registry.gitlab.propulsion-home.ch/full-stack/batch-2018-09/personal-projects/skunk:latest
     restart: always

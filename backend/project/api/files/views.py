@@ -1,6 +1,6 @@
 import rest_framework.generics as generics
 from project.api.files.serializers import FileSerializer
-from project.base.apps.trackers.models.session import File
+from project.base.apps.trackers.models.file import File
 
 
 class FilesFromSessions(generics.ListAPIView):

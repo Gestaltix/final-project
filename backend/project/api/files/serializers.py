@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from project.base.apps.trackers.models.session import File
+from project.base.apps.trackers.models.file import File
 
 
 class FileSerializer(ModelSerializer):

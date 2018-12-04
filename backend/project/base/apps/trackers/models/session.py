@@ -1,6 +1,8 @@
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 
+from project.base.apps.tasks.models import LoadTask
+
 
 class Session(TimeStampedModel):
     tracker = models.ForeignKey(
@@ -24,29 +26,16 @@ class Session(TimeStampedModel):
     def __str__(self):
         return str(self.created)
 
+    def load_data(self):
+        if self.data_load_in_progress:
+            raise Exception('Data still loading!')
+        return LoadTask.objects.create(
+            session=self,
+        )
 
-class File(TimeStampedModel):
-    session = models.ForeignKey(
-        verbose_name='session',
-        to='trackers.Session',
-        related_name='files',
-        on_delete=models.CASCADE,
-    )
-    member = models.ForeignKey(
-        verbose_name='member',
-        to='team.Member',
-        on_delete=models.CASCADE,
-        null=True,
-    )
-    file = models.FileField(
-        verbose_name='file',
-        null=True,
-        blank=True,
-    )
-    filename = models.CharField(
-        verbose_name='filename',
-        max_length=100,
-    )
-
-    def __str__(self):
-        return str(self.session)
+    @property
+    def data_load_in_progress(self):
+        return bool(LoadTask.objects.filter(
+            finished=False,
+            session=self,
+        ).count())

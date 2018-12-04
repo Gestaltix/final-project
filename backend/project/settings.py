@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['backend', 'localhost', 'skunk.propulsion-learn.ch', '0.0.0.0']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'project.base.apps.team',
     'project.base.apps.trackers',
     'project.base.apps.calculations',
+    'project.base.apps.tasks',
     'rest_framework',
 ]
 
