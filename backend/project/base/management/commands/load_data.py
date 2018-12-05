@@ -22,7 +22,7 @@ class Command(BaseCommand):
                     member.data.all().delete()
                     try:
                         file = session.files.get(member=member)
-                    except File.DoesNotExsist:
+                    except:  # noqa
                         continue
 
                     df = pandas.read_csv(file.file.path, skiprows=5, sep=',')
