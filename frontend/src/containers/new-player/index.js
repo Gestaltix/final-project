@@ -66,8 +66,7 @@ class NewPlayer extends Component {
                 height: this.state.height,
                 birthday: this.state.birthday,
             }
-        })
-            .then(() => { this.props.history.goBack() })
+        }).then(() => { this.props.history.goBack() })
     }
     componentDidMount = () => {
         this.props.dispatch({
