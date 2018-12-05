@@ -44,72 +44,75 @@ class MapSession extends Component {
                         <Button color='primary' variant='contained' onClick={this.handlePowerCategories}>Calculate Power Categories</Button>
                     </div> : null : null}
             <h2 className='NameForm'>Total Energy Per Zone</h2>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>
-                            Name
+            {this.props.teamGraph ?
+                <div>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>
+                                    Name
                         </TableCell>
-                        <TableCell>
-                            Maximum Power
+                                <TableCell>
+                                    Maximum Power
                         </TableCell>
-                        <TableCell>
-                            Enormous Power
+                                <TableCell>
+                                    Enormous Power
                         </TableCell>
-                        <TableCell>
-                            Medium Power
+                                <TableCell>
+                                    Medium Power
                         </TableCell>
-                        <TableCell>
-                            Least Power
+                                <TableCell>
+                                    Least Power
                         </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {this.props.teamGraph ?
-                        Object.keys(this.props.teamGraph).map(key => {
-                            return <TableRow>
-                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
-                                {this.props.teamGraph[key].map(dataPoint => {
-                                    return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
-                                })}
                             </TableRow>
-                        }) : null}
-                </TableBody>
-            </Table>
-            <h2 className='NameForm'>Total Time Per Zone</h2>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>
-                            Name
+                        </TableHead>
+                        <TableBody>
+                            {this.props.teamGraph ?
+                                Object.keys(this.props.teamGraph).map(key => {
+                                    return <TableRow>
+                                        <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                        {this.props.teamGraph[key].map(dataPoint => {
+                                            return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
+                                        })}
+                                    </TableRow>
+                                }) : null}
+                        </TableBody>
+                    </Table>
+                    <h2 className='NameForm'>Total Time Per Zone</h2>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>
+                                    Name
                         </TableCell>
-                        <TableCell>
-                            Maximum Power
+                                <TableCell>
+                                    Maximum Power
                         </TableCell>
-                        <TableCell>
-                            Enormous Power
+                                <TableCell>
+                                    Enormous Power
                         </TableCell>
-                        <TableCell>
-                            Medium Power
+                                <TableCell>
+                                    Medium Power
                         </TableCell>
-                        <TableCell>
-                            Least Power
+                                <TableCell>
+                                    Least Power
                         </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {this.props.teamGraph ?
-                        Object.keys(this.props.teamGraph).map(key => {
-                            return <TableRow>
-                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
-                                {this.props.teamGraph[key].map(dataPoint => {
-                                    return <TableCell>{dataPoint.total_time_sec}</TableCell>
-                                })}
                             </TableRow>
-                        }) : null}
-                </TableBody>
-            </Table>
-            <Button onClick={this.makeGraph}>Populate Graphs</Button>
+                        </TableHead>
+                        <TableBody>
+                            {this.props.teamGraph ?
+                                Object.keys(this.props.teamGraph).map(key => {
+                                    return <TableRow>
+                                        <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                        {this.props.teamGraph[key].map(dataPoint => {
+                                            return <TableCell>{dataPoint.total_time_sec}</TableCell>
+                                        })}
+                                    </TableRow>
+                                }) : null}
+                        </TableBody>
+                    </Table>
+                </div>
+                : null}
         </div>
     }
     handleChange = (e, member) => {
@@ -124,11 +127,6 @@ class MapSession extends Component {
     }
     makeGraph = () => {
         console.log('making Graph...')
-        this.props.dispatch({
-            type: 'setTeamGraph',
-            endpoint: `sessions/get-power-categories-from-session/${this.props.match.params.id}`,
-            method: 'GET',
-        })
     }
     handlePowerCategories = () => {
         this.props.dispatch({
@@ -164,6 +162,11 @@ class MapSession extends Component {
             type: 'setTeams',
             method: 'GET',
             endpoint: 'teams',
+        })
+        this.props.dispatch({
+            type: 'setTeamGraph',
+            endpoint: `sessions/get-power-categories-from-session/${this.props.match.params.id}`,
+            method: 'GET',
         })
     }
 }
