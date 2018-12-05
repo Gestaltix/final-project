@@ -13,7 +13,7 @@ const customMiddleWare = store => dispatch => action => {
         body: JSON.stringify(action.body),
         method: action.method,
     }
-    return fetch(`http://localhost:8000/backend/api/${action.endpoint}/`, options)
+    return fetch(`https://skunk.propulsion-learn.ch/backend/api/${action.endpoint}/`, options)
         .then(res => res.status !== 200 ? null : res.json())
         .then(data => {
             console.log(data)

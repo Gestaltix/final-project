@@ -30,9 +30,6 @@ class SessionSerializer(serializers.ModelSerializer):
                 file.file.save(name=name, content=ContentFile(input_zip.read(name)))
         return session
 
-    def get_files(self, instance):
-        i
-
 
 class CalculatedDataSerializer(serializers.ModelSerializer):
     class Meta:

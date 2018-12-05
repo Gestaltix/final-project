@@ -33,8 +33,6 @@ COPY ./backend/requirements.yml /backend/requirements.yml
 RUN /opt/miniconda/bin/conda env create -f /backend/requirements.yml
 ENV PATH /opt/miniconda/envs/backend/bin:$PATH
 
-COPY ./backend /backend
-
 COPY ./scripts/* /scripts/
 RUN chmod +x /scripts/*
 
@@ -44,6 +42,7 @@ COPY frontend/package-lock.json /frontend/
 RUN npm install
 COPY ./frontend /frontend
 RUN npm run build
+COPY ./backend /backend
 
 WORKDIR /backend
 

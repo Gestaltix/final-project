@@ -138,7 +138,7 @@ USE_TZ = True
 
 MEDIA_ROOT = "/media-files"
 MEDIA_URL = "/media/"
-STATIC_URL = "/static/"
+STATIC_URL = "/static-files/"
 STATIC_ROOT = "/static-files"
 
 REST_FRAMEWORK = {
