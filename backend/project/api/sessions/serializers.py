@@ -31,7 +31,6 @@ class SessionSerializer(serializers.ModelSerializer):
         return session
 
 
-
 class CalculatedDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = Data
