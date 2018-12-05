@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './index.css'
-import { Tabs, Tab, Button, TextField, Paper } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import connection from '../../connection';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -29,7 +28,7 @@ class Teams extends Component {
             return this.props.teams.map((team) => {
                 return (
                     <ListItem button key={team.id}>
-                        <ListItemText primary={team.name} onClick={this.selectTeam(team.id)} />
+                        <ListItemText primary={team.name} secondary={`${team.members.length} Players`} onClick={this.selectTeam(team.id)} />
                     </ListItem>
                 )
             })
@@ -46,28 +45,35 @@ class Teams extends Component {
                         </List>
 
                         {/*<Paper className='TeamPaper'>*/}
-                            {/*<Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>*/}
-                                {/*{this.props.teams.map((team) => {*/}
-                                    {/*return <Tab key={team.id} label={team.name} />*/}
-                                {/*})}*/}
-                            {/*</Tabs>*/}
-                            {/*<div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>*/}
-                            {/*<Button onClick={this.deleteTeamButton}>Delete Current Team</Button>*/}
+                        {/*<Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>*/}
+                        {/*{this.props.teams.map((team) => {*/}
+                        {/*return <Tab key={team.id} label={team.name} />*/}
+                        {/*})}*/}
+                        {/*</Tabs>*/}
+                        {/*<div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>*/}
+                        {/*<Button onClick={this.deleteTeamButton}>Delete Current Team</Button>*/}
                         {/*</Paper>*/}
                         {/*<h2 className='NameForm'>Players</h2>*/}
                         {/*<div className='NameForm'><Link to='/new-player'><Button variant='outlined'>Add Player</Button></Link></div>*/}
                         {/*<div className='PlayerButtonDiv'>*/}
-                            {/*{this.props.teams[this.props.nonFetchData.teamTab].members.length !== 0 ?*/}
-                                {/*this.props.teams[this.props.nonFetchData.teamTab].members.map((member) => {*/}
-                                    {/*return <Link to={`players/${member.id}`}><Button>{member.name}</Button></Link>*/}
-                                {/*}) : <p className='NameForm'>We don't have any players in this team, so you won't be able to create a session for this team yet. Click "Add Player" to add one!</p>*/}
-                            {/*}*/}
+                        {/*{this.props.teams[this.props.nonFetchData.teamTab].members.length !== 0 ?*/}
+                        {/*this.props.teams[this.props.nonFetchData.teamTab].members.map((member) => {*/}
+                        {/*return <Link to={`players/${member.id}`}><Button>{member.name}</Button></Link>*/}
+                        {/*}) : <p className='NameForm'>We don't have any players in this team, so you won't be able to create a session for this team yet. Click "Add Player" to add one!</p>*/}
+                        {/*}*/}
                         {/*</div>*/}
                     </div>
                     :
                     <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>}
             </div>
         );
+    }
+    componentDidMount = () => {
+        this.props.dispatch({
+            method: "GET",
+            endpoint: 'teams',
+            type: 'setTeams'
+        })
     }
     tabHandler = (e, index) => {
         this.props.dispatch({

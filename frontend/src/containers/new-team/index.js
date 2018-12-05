@@ -36,7 +36,7 @@ class NewTeam extends Component {
                 name: this.state.teamName
             },
             type: null
-        }).then(() => { this.props.history.replace('/') })
+        }).then(() => { this.props.history.goBack() })
     }
     componentDidMount = () => {
         this.props.dispatch({

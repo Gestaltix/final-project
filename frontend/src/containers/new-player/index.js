@@ -14,6 +14,7 @@ class NewPlayer extends Component {
         }
     }
     render() {
+        console.log('These are MY Props...', this.props)
         return <div>
             <TopBar history={this.props.history} />
             <form onSubmit={this.submitHandler}>
@@ -57,7 +58,7 @@ class NewPlayer extends Component {
         })
         this.props.dispatch({
             method: 'POST',
-            endpoint: `teams/${this.props.teams[this.props.nonFetchData.teamTab].id}/members`,
+            endpoint: `teams/${this.props.match.params.id}/members`,
             type: null,
             body: {
                 name: this.state.name,
@@ -65,7 +66,8 @@ class NewPlayer extends Component {
                 height: this.state.height,
                 birthday: this.state.birthday,
             }
-        }).then(() => { this.props.history.replace('/') })
+        })
+            .then(() => { this.props.history.goBack() })
     }
     componentDidMount = () => {
         this.props.dispatch({

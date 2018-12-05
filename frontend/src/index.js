@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './containers/app'
@@ -10,7 +10,7 @@ import store from "./store";
 ReactDOM.render(
     <MuiThemeProvider theme={Skunk}>
         <Provider store={store}>
-            <App/>
+            <App />
         </Provider>
     </MuiThemeProvider>
     , document.getElementById('root'));

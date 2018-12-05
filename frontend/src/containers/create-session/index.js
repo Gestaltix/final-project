@@ -4,7 +4,6 @@ import { Paper, Button } from '@material-ui/core/'
 import './index.css';
 import TopBar from '../../components/topbar';
 import Dropzone from 'react-dropzone';
-import { Redirect } from 'react-router-dom';
 
 class CreateSession extends Component {
     constructor(props) {

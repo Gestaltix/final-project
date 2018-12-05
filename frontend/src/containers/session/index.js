@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core'
 import { connect } from 'react-redux';
 import TopBar from '../../components/topbar';
-import Plot from 'react-plotly.js';
 import './index.css'
 
 class MapSession extends Component {
@@ -25,7 +24,9 @@ class MapSession extends Component {
                     return <div className='MapSessionRow'>
                         <p>{member.name}</p>
                         <select onChange={e => this.handleChange(e, member.id)}>
-                            <option disabled selected>Files</option>
+                            {this.props.files.find(file => file.id === member.id) ?
+                                <option disabled selected>{this.props.files.find(file => file.id === member.id).filename}</option> :
+                                <option disabled selected>Files</option>}
                             {this.props.files.map(file => {
                                 return <option value={file.id}>{file.filename}</option>
                             })}
@@ -120,7 +121,6 @@ class MapSession extends Component {
             },
             method: 'PUT'
         })
-            .then(() => this.componentDidMount())
     }
     makeGraph = () => {
         console.log('making Graph...')
