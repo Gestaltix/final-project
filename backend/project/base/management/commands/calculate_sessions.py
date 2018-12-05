@@ -5,7 +5,7 @@ import numpy as np
 from django.core.management.base import BaseCommand
 
 from project.base.apps.calculations.models import Data as CalculationData
-from project.base.apps.tasks.models import CalculateTask
+from project.base.apps.tasks.models import CalculateTask, CalculatePowerCategoriesTask
 
 
 class Command(BaseCommand):
@@ -86,5 +86,8 @@ class Command(BaseCommand):
                         CalculationData.objects.bulk_create(data)
                 task.finished = True
                 task.save()
+                CalculatePowerCategoriesTask.objects.create(
+                    session=True,
+                )
                 self.stdout.write(self.style.SUCCESS('Finished calculations'))
             sleep(5)
