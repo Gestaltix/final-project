@@ -25,7 +25,7 @@ class Sessions extends Component {
                             {session.data_load_in_progress
                                 || session.data_calculation_in_progress
                                 || session.power_categories_calculation_in_progress ?
-                                <ListItemIcon><img className='LoadingGif' src={Loading} /></ListItemIcon> : null}
+                                <ListItemIcon><img className='LoadingGif' src={Loading} alt='This session is loading. It might take some time' /></ListItemIcon> : null}
                         </ListItem>
                         </Link>
                     }) : null}

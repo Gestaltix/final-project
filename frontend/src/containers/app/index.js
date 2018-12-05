@@ -11,6 +11,7 @@ import Team from '../team';
 import Session from '../session';
 import connect from "react-redux/es/connect/connect";
 import Player from '../player';
+import UpdatePlayer from '../update-player';
 
 class App extends Component {
     componentDidMount = () => {
@@ -30,7 +31,8 @@ class App extends Component {
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/new-team' component={NewTeam} />
                         <Route exact path='/team/:id' component={Team} />
-                        <Route exact path='/new-player' component={NewPlayer} />
+                        <Route exact path='/team/:id/new-player' component={NewPlayer} />
+                        <Route exact path='/update-player/:id' component={UpdatePlayer} />
                         <Route exact path='/create-session' component={CreateSession} />
                         <Route exact path='/players/:id' component={Member} />
                         <Route exact path='/sessions/:id' component={Session} />

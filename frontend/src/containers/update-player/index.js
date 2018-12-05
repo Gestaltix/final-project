@@ -19,12 +19,12 @@ class NewPlayer extends Component {
             <TopBar history={this.props.history} />
             <form onSubmit={this.submitHandler}>
                 <div className='PlayerForm'>
-                    <TextField label='Name' onChange={this.nameChangeHandler} value={this.state.name} />
-                    <TextField label='Weight(kg)' onChange={this.weightChangeHandler} value={this.state.weight} />
-                    <TextField label='Height' onChange={this.heightChangeHandler} value={this.state.height} />
-                    <TextField type='date' label='Birthday' onChange={this.birthdayChangeHandler} value={this.state.age} InputLabelProps={{ shrink: true }} />
+                    <TextField label='Name' onChange={this.nameChangeHandler} value={this.state.name} helperText={this.props.player.name} />
+                    <TextField label='Weight(kg)' onChange={this.weightChangeHandler} value={this.state.weight} helperText={this.props.player.weight} />
+                    <TextField label='Height' onChange={this.heightChangeHandler} value={this.state.height} helperText={this.props.player.height} />
+                    <TextField type='date' label='Birthday' onChange={this.birthdayChangeHandler} value={this.state.age} helperText={this.props.player.birthday} InputLabelProps={{ shrink: true }} />
                 </div >
-                <Button type='submit'>Make Player</Button>
+                <Button type='submit'>Update</Button>
             </form>
         </div>
     }
@@ -50,24 +50,24 @@ class NewPlayer extends Component {
     }
     submitHandler = (e) => {
         e.preventDefault()
-        this.setState({
-            name: '',
-            weight: '',
-            height: '',
-            birthday: '',
-        })
+        console.log('dispatching...')
         this.props.dispatch({
-            method: 'POST',
-            endpoint: `teams/${this.props.match.params.id}/members`,
+            method: 'PUT',
+            endpoint: `teams/members/${this.props.match.params.id}`,
             type: null,
             body: {
-                name: this.state.name,
-                weight: this.state.weight,
-                height: this.state.height,
-                birthday: this.state.birthday,
+                name: !this.state.name ? this.props.player.height : this.state.name,
+                weight: !this.state.weight ? this.props.player.weight : this.state.weight,
+                height: !this.state.height ? this.props.player.height : this.state.height,
+                birthday: !this.state.birthday ? this.props.player.birthday : this.state.birthday,
             }
-        })
-            .then(() => { this.props.history.goBack() })
+        }).then(
+            this.setState({
+                name: '',
+                weight: '',
+                height: '',
+                birthday: '',
+            })).then(() => { this.props.history.goBack() })
     }
     componentDidMount = () => {
         this.props.dispatch({
@@ -83,9 +83,9 @@ class NewPlayer extends Component {
             }
         })
         this.props.dispatch({
-            type: 'setTeams',
+            type: 'setPlayer',
             method: 'GET',
-            endpoint: 'teams',
+            endpoint: `teams/members/${this.props.match.params.id}`,
         })
     }
 }
