@@ -32,7 +32,7 @@ class Command(BaseCommand):
                     # Clear all calculated data
                     session.calculated_power_category_data.filter(member=member).delete()
 
-                    session_data = session.calculated_data.order_by('time').values(
+                    session_data = session.calculated_data.filter(member=member).order_by('time').values(
                         'time',
                         'category',
                         'watt_kg',
