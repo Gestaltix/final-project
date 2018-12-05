@@ -37,7 +37,6 @@ class Teams extends Component {
     render() {
         return (
             <div>
-                <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
                 {this.props.teams.length !== 0 ?
                     <div>
                         <List component="nav">
@@ -62,6 +61,7 @@ class Teams extends Component {
                         {/*}) : <p className='NameForm'>We don't have any players in this team, so you won't be able to create a session for this team yet. Click "Add Player" to add one!</p>*/}
                         {/*}*/}
                         {/*</div>*/}
+                        <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
                     </div>
                     :
                     <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>}
