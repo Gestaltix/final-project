@@ -64,7 +64,7 @@ class CreateSession extends Component {
         }
         delete options.headers['Content-Type'];
 
-        fetch('http://skunk.propulsion-learn.ch/backend/api/sessions/create/', options)
+        fetch('https://skunk.propulsion-learn.ch/backend/api/sessions/create/', options)
             .then(r => r.json())
             .then((r) => {
                 console.log(r)
