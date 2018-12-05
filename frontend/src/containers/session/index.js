@@ -34,86 +34,88 @@ class MapSession extends Component {
                     </div>
                 })}
             </div>
-            {this.props.sessions.selectedSession ?
-                !this.props.sessions.selectedSession.data_load_in_progress
+            <div className='SessionButtons'><Button color='primary' variant='contained' onClick={this.handleCLick} disabled=
+                {this.props.sessions.selectedSession
+                    && !this.props.sessions.selectedSession.data_load_in_progress
                     && !this.props.sessions.selectedSession.data_calculation_in_progress
                     && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ?
-                    <div className='SessionButtons'>
-                        <Button color='primary' variant='contained' onClick={this.handleCLick}>Load Data</Button>
-                        <Button color='primary' variant='contained' onClick={this.handleCalculate}>Calculate Data</Button>
-                        <Button color='primary' variant='contained' onClick={this.handlePowerCategories}>Calculate Power Categories</Button>
-                    </div> : null : null}
+                    false : true}>{this.props.sessions.selectedSession
+                        && !this.props.sessions.selectedSession.data_load_in_progress
+                        && !this.props.sessions.selectedSession.data_calculation_in_progress
+                        && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ? 'Load Data' : 'Loading'}</Button></div>
             <h2 className='NameForm'>Total Energy Per Zone</h2>
-            {this.props.teamGraph ?
-                <div>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>
-                                    Name
+            {
+                this.props.teamGraph ?
+                    <div>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>
+                                        Name
                         </TableCell>
-                                <TableCell>
-                                    Maximum Power
+                                    <TableCell>
+                                        Maximum Power
                         </TableCell>
-                                <TableCell>
-                                    Enormous Power
+                                    <TableCell>
+                                        Enormous Power
                         </TableCell>
-                                <TableCell>
-                                    Medium Power
+                                    <TableCell>
+                                        Medium Power
                         </TableCell>
-                                <TableCell>
-                                    Least Power
+                                    <TableCell>
+                                        Least Power
                         </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {this.props.teamGraph ?
-                                Object.keys(this.props.teamGraph).map(key => {
-                                    return <TableRow>
-                                        <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
-                                        {this.props.teamGraph[key].map(dataPoint => {
-                                            return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
-                                        })}
-                                    </TableRow>
-                                }) : null}
-                        </TableBody>
-                    </Table>
-                    <h2 className='NameForm'>Total Time Per Zone</h2>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>
-                                    Name
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.props.teamGraph ?
+                                    Object.keys(this.props.teamGraph).map(key => {
+                                        return <TableRow>
+                                            <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                            {this.props.teamGraph[key].map(dataPoint => {
+                                                return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
+                                            })}
+                                        </TableRow>
+                                    }) : null}
+                            </TableBody>
+                        </Table>
+                        <h2 className='NameForm'>Total Time Per Zone</h2>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>
+                                        Name
                         </TableCell>
-                                <TableCell>
-                                    Maximum Power
+                                    <TableCell>
+                                        Maximum Power
                         </TableCell>
-                                <TableCell>
-                                    Enormous Power
+                                    <TableCell>
+                                        Enormous Power
                         </TableCell>
-                                <TableCell>
-                                    Medium Power
+                                    <TableCell>
+                                        Medium Power
                         </TableCell>
-                                <TableCell>
-                                    Least Power
+                                    <TableCell>
+                                        Least Power
                         </TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {this.props.teamGraph ?
-                                Object.keys(this.props.teamGraph).map(key => {
-                                    return <TableRow>
-                                        <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
-                                        {this.props.teamGraph[key].map(dataPoint => {
-                                            return <TableCell>{dataPoint.total_time_sec}</TableCell>
-                                        })}
-                                    </TableRow>
-                                }) : null}
-                        </TableBody>
-                    </Table>
-                </div>
-                : null}
-        </div>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.props.teamGraph ?
+                                    Object.keys(this.props.teamGraph).map(key => {
+                                        return <TableRow>
+                                            <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                            {this.props.teamGraph[key].map(dataPoint => {
+                                                return <TableCell>{dataPoint.total_time_sec}</TableCell>
+                                            })}
+                                        </TableRow>
+                                    }) : null}
+                            </TableBody>
+                        </Table>
+                    </div>
+                    : null
+            }
+        </div >
     }
     handleChange = (e, member) => {
         this.props.dispatch({
@@ -127,22 +129,6 @@ class MapSession extends Component {
     }
     makeGraph = () => {
         console.log('making Graph...')
-    }
-    handlePowerCategories = () => {
-        this.props.dispatch({
-            type: null,
-            endpoint: `sessions/calculate-power-categories/${this.props.match.params.id}`,
-            method: 'POST'
-        })
-            .then(() => this.componentDidMount())
-    }
-    handleCalculate = () => {
-        this.props.dispatch({
-            type: null,
-            endpoint: `sessions/calculate-data/${this.props.match.params.id}`,
-            method: 'POST'
-        })
-            .then(() => this.componentDidMount())
     }
     handleCLick = () => {
         this.props.dispatch({
