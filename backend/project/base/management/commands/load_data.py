@@ -2,7 +2,7 @@ from time import sleep
 
 import pandas
 from django.core.management.base import BaseCommand
-from project.base.apps.trackers.models import Data, File
+from project.base.apps.trackers.models import Data
 from project.base.apps.tasks.models import LoadTask
 
 
