@@ -2,7 +2,7 @@ from time import sleep
 
 import pandas
 from django.core.management.base import BaseCommand
-from project.base.apps.trackers.models import Data
+from project.base.apps.trackers.models import Data, File
 from project.base.apps.tasks.models import LoadTask
 
 
@@ -17,13 +17,14 @@ class Command(BaseCommand):
                 session = task.session
                 self.stdout.write(self.style.SUCCESS(f'Loading session {session.pk}'))
 
-                # Clear all data
-                session.data.all().delete()
-
-                # Loop over files in session
-                for file in session.files.all():
-                    if not file.member:
+                for member in session.team.members.all():
+                    # Clear all data
+                    member.data.all().delete()
+                    try:
+                        file = session.files.get(member=member)
+                    except File.DoesNotExsist:
                         continue
+
                     df = pandas.read_csv(file.file.path, skiprows=5, sep=',')
                     # Reformat to datetime
                     df[u'time'] = pandas.to_datetime(df[u'time[ISO-UTC]'], format='%Y%m%dT%H%M%S%f', utc=True)

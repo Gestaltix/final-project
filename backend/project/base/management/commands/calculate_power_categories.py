@@ -25,11 +25,13 @@ class Command(BaseCommand):
                     self.style.SUCCESS('Starting to calculate power categories per team member in all sessions')
                 )
                 session = task.session
-                # Clear all calculated data
-                session.calculated_power_category_data.all().delete()
 
                 # Loop over members in team session and calculate power category data
                 for member in session.team.members.all():
+
+                    # Clear all calculated data
+                    session.calculated_power_category_data.filter(member=member).delete()
+
                     session_data = session.calculated_data.order_by('time').values(
                         'time',
                         'category',

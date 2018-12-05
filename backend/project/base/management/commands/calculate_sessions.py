@@ -21,9 +21,10 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Starting to calculated imported data per session'))
                 session = task.session
 
-                # Clear all calculated data
-                session.calculated_data.all().delete()
                 for member in session.team.members.all():
+
+                    # Clear all calculated data per member
+                    session.calculated_data.filter(member=member).delete()
 
                     session_data = member.data.order_by('time').values(
                         'time',
