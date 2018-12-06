@@ -5,18 +5,30 @@
     width: 30%;
     display: block;
     padding: 2%;
-background: -webkit-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(0,0,0,1) 51%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%);}
+    background: -webkit-linear-gradient(-45deg, rgba(76,76,76,1) 0%,rgba(89,89,89,1) 12%,rgba(102,102,102,1) 25%,rgba(71,71,71,1) 39%,rgba(44,44,44,1) 50%,rgba(17,17,17,1) 60%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%);
+    opacity: .92;
+}
 
 .LoginLogo {
     width: 20%;
     margin: 0 auto;
+    opacity: 1;
 }
 
 .LoginButtonDiv {
     width: 20%;
     margin: 0 auto;
+    opacity: 1;
 }
 
 .LoginInput input {
     color: yellow;
+    opacity: 1;
+}
+
+.LoginScreen {
+    background-image: url('../../assets/images/frontpage.jpg');
+    background-size: cover;
+    width: 1920px;
+    height: 1200px;
 }

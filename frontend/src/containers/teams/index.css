@@ -40,3 +40,14 @@
 .PlayerButtonDiv * {
     margin: 5px;
 }
+
+.AddTeamDiv {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.TeamsList {
+    width: 50%;
+    margin: 0 auto;
+}

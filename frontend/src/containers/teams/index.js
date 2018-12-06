@@ -27,8 +27,8 @@ class Teams extends Component {
         if (this.props.teams.length > 0) {
             return this.props.teams.map((team) => {
                 return (
-                    <ListItem button key={team.id}>
-                        <ListItemText primary={team.name} secondary={`${team.members.length} Players`} onClick={this.selectTeam(team.id)} />
+                    <ListItem button key={team.id} onClick={this.selectTeam(team.id)}>
+                        <ListItemText primary={team.name} secondary={`${team.members.length} Players`} />
                     </ListItem>
                 )
             })
@@ -38,35 +38,16 @@ class Teams extends Component {
         return (
             <div>
                 {this.props.teams.length !== 0 ?
-                    <div>
+                    <div className='TeamsList'>
                         <List component="nav">
                             {this.teamList()}
                         </List>
-
-                        {/*<Paper className='TeamPaper'>*/}
-                        {/*<Tabs centered value={this.props.nonFetchData.teamTab} onChange={(e, index) => this.tabHandler(e, index)} indicatorColor='primary'>*/}
-                        {/*{this.props.teams.map((team) => {*/}
-                        {/*return <Tab key={team.id} label={team.name} />*/}
-                        {/*})}*/}
-                        {/*</Tabs>*/}
-                        {/*<div className='NameForm'><p>Name:</p> <TextField placeholder={this.props.teams[this.props.nonFetchData.teamTab].name} /></div>*/}
-                        {/*<Button onClick={this.deleteTeamButton}>Delete Current Team</Button>*/}
-                        {/*</Paper>*/}
-                        {/*<h2 className='NameForm'>Players</h2>*/}
-                        {/*<div className='NameForm'><Link to='/new-player'><Button variant='outlined'>Add Player</Button></Link></div>*/}
-                        {/*<div className='PlayerButtonDiv'>*/}
-                        {/*{this.props.teams[this.props.nonFetchData.teamTab].members.length !== 0 ?*/}
-                        {/*this.props.teams[this.props.nonFetchData.teamTab].members.map((member) => {*/}
-                        {/*return <Link to={`players/${member.id}`}><Button>{member.name}</Button></Link>*/}
-                        {/*}) : <p className='NameForm'>We don't have any players in this team, so you won't be able to create a session for this team yet. Click "Add Player" to add one!</p>*/}
-                        {/*}*/}
-                        {/*</div>*/}
-                        <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
+                        <div className='AddTeamDiv'><Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button></div>
                     </div>
                     :
                     <div>
                         <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>
-                        <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
+                        <div className='AddTeamDiv'><Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button></div>
                     </div>
                 }
             </div>

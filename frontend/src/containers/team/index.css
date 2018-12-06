@@ -40,3 +40,9 @@
 .PlayerButtonDiv * {
     margin: 5px;
 }
+
+.Team {
+    background-image: url('../../assets/images/messi.jpg') cover;
+    height: 1080px;
+    width: 1920px;
+}

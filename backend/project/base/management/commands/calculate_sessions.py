@@ -87,7 +87,7 @@ class Command(BaseCommand):
                 task.finished = True
                 task.save()
                 CalculatePowerCategoriesTask.objects.create(
-                    session=True,
+                    session=session,
                 )
                 self.stdout.write(self.style.SUCCESS('Finished calculations'))
             sleep(5)
