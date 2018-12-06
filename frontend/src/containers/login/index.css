@@ -31,9 +31,5 @@
     background-image: url('../../assets/images/frontpage.jpg');
     background-size: cover;
     width: 1920px;
-    height: 1200px;
-}
-
-.LoginShadow {
-    box-shadow: 40px 40px solid black;
+    height: 1092px;
 }

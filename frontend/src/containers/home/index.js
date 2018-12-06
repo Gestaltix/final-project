@@ -3,10 +3,9 @@ import connection from '../../connection';
 import 'filepond/dist/filepond.min.css';
 import { Tabs, Tab } from '@material-ui/core';
 import TopBar from '../../components/topbar';
-// eslint-disable-next-line
-import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import Teams from '../../containers/teams';
 import Sessions from '../sessions';
+import './index.css'
 
 class Home extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class Home extends Component {
         </Tabs>
         {this.props.nonFetchData.homeTab === 0 ? <Teams history={this.props.history} /> : null}
         {this.props.nonFetchData.homeTab === 1 ? <Sessions /> : null}
-      </div >
+      </div>
     );
   }
   tabHandler = (e, index) => {

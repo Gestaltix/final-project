@@ -27,7 +27,7 @@ class Teams extends Component {
         if (this.props.teams.length > 0) {
             return this.props.teams.map((team) => {
                 return (
-                    <ListItem button key={team.id} onClick={this.selectTeam(team.id)}>
+                    <ListItem className='TeamsListItem' button key={team.id} onClick={this.selectTeam(team.id)}>
                         <ListItemText primary={team.name} secondary={`${team.members.length} Players`} />
                     </ListItem>
                 )

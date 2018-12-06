@@ -17,24 +17,39 @@ class Login extends Component {
         return localStorage.getItem('token') ?
             <Redirect to='/' /> :
             <div className='LoginScreen'>
-                <div className='LoginShadow'>
-                    <Paper className='LoginPaper'>
-                        <form onSubmit={this.submitHandler}>
-                            <img src={logo} alt='Skunk Sports' className='LoginLogo' />
-                            <TextField label='username' color='primary' fullWidth onChange={this.usernameHandler} value={this.state.username} className='LoginInput' />
-                            <TextField label='password' color='primary' fullWidth onChange={this.passwordHandler} value={this.state.password} className='LoginInput' type='password' />
-                            <div className='LoginButtonDiv'>
-                                <Button
-                                    className='LoginButton'
-                                    color='primary'
-                                    variant='text'
-                                    type='submit'>
-                                    Login
-                    </Button>
-                            </div>
-                        </form>
-                    </Paper>
-                </div>
+                <Paper className='LoginPaper'>
+                    <form onSubmit={this.submitHandler}>
+                        <img src={logo} alt='Skunk Sports' className='LoginLogo' />
+
+                        <TextField
+                            label='username'
+                            color='primary'
+                            fullWidth
+                            onChange={this.usernameHandler}
+                            value={this.state.username}
+                            className='LoginInput' />
+
+                        <TextField
+                            label='password'
+                            color='primary'
+                            fullWidth
+                            onChange={this.passwordHandler}
+                            value={this.state.password}
+                            className='LoginInput'
+                            type='password' />
+
+                        <div className='LoginButtonDiv'>
+                            <Button
+                                className='LoginButton'
+                                color='primary'
+                                variant='text'
+                                type='submit'>
+                                Login
+                            </Button>
+                        </div>
+
+                    </form>
+                </Paper>
             </div>
     }
     usernameHandler = (e) => {

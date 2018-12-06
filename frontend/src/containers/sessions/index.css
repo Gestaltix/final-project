@@ -6,7 +6,13 @@
 
 .SessionsButton > * {
     margin: 2% auto;
-    padding: 2%;
+}
+
+.SessionsButton {
+    background-image: url('../../assets/images/sessions.png');
+    width: 100%;
+    min-height: 924px;
+    max-height: 100%;
 }
 
 .SessionsPaper {
@@ -29,4 +35,15 @@
 
 .LoadDescription {
     margin-right: 10px;
+}
+
+.SessionsList {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.SessionDiv {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
 }

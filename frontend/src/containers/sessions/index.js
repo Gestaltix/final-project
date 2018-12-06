@@ -8,28 +8,47 @@ import Loading from '../../assets/images/spinningwheel.gif'
 class Sessions extends Component {
     render() {
         return <div className='SessionsButton'>
-            <Link to='/create-session' ><Button variant='outlined' color='secondary' >Make New Session</Button></Link>
-            <List>
-                {this.props.sessions.sessions ?
-                    this.props.sessions.sessions.map((session, index) => {
-                        return <Link to={`/sessions/${session.id}`}><ListItem className='SessionsListItem'>
-                            <ListItemText
-                                primary={`Session ${session.id}`}
-                                secondary={`${session.files.length} Files - ${
-                                    session.data_load_in_progress ? 'Loading Data -' :
-                                        session.data_calculation_in_progress ? 'Calculating Data -' :
-                                            session.power_categories_calculation_in_progress ? 'Calculating Power Categories -' : ''
-                                    } ${this.props.teams.find(team => team.id === session.team).name}`}
-                                inset
-                                onClick={this.clickHandler} />
-                            {session.data_load_in_progress
-                                || session.data_calculation_in_progress
-                                || session.power_categories_calculation_in_progress ?
-                                <ListItemIcon><img className='LoadingGif' src={Loading} alt='This session is loading. It might take some time' /></ListItemIcon> : null}
-                        </ListItem>
-                        </Link>
-                    }) : null}
-            </List>
+
+            <Link to='/create-session' >
+                <Button
+                    variant='contained'
+                    color='primary' >
+                    Make New Session
+            </Button>
+            </Link>
+
+            <div className='TeamsList'>
+                <List>
+                    {this.props.sessions.sessions ?
+                        this.props.sessions.sessions.map((session, index) => {
+                            return <Link to={`/sessions/${session.id}`}>
+                                <ListItem className='SessionsListItem'>
+                                    <ListItemText
+                                        primary={`Session ${session.id}`}
+                                        secondary={`${session.files.length} Files - ${
+                                            session.data_load_in_progress ? 'Loading Data -' :
+                                                session.data_calculation_in_progress ? 'Calculating Data -' :
+                                                    session.power_categories_calculation_in_progress ? 'Calculating Power Categories -' : ''
+                                            } ${this.props.teams.find(team => team.id === session.team).name}`}
+                                        inset
+                                        onClick={this.clickHandler} />
+                                    {session.data_load_in_progress
+                                        || session.data_calculation_in_progress
+                                        || session.power_categories_calculation_in_progress ?
+
+                                        <ListItemIcon>
+                                            <img
+                                                className='LoadingGif'
+                                                src={Loading}
+                                                alt='This session is loading. It might take some time' />
+                                        </ListItemIcon> : null}
+
+                                </ListItem>
+                            </Link>
+                        }) : null}
+                </List>
+            </div>
+
         </div>
     }
     componentDidMount = () => {
