@@ -64,7 +64,11 @@ class Teams extends Component {
                         <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
                     </div>
                     :
-                    <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>}
+                    <div>
+                        <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>
+                        <Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button>
+                    </div>
+                }
             </div>
         );
     }

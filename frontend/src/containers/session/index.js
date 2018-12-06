@@ -71,7 +71,8 @@ class MapSession extends Component {
                                 {this.props.teamGraph ?
                                     Object.keys(this.props.teamGraph).map(key => {
                                         return <TableRow>
-                                            <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                            {this.props.members.find(m => m.id === parseInt(key)) ?
+                                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell> : null}
                                             {this.props.teamGraph[key].map(dataPoint => {
                                                 return <TableCell>{dataPoint.total_energy_kj_per_kg}</TableCell>
                                             })}
@@ -104,7 +105,8 @@ class MapSession extends Component {
                                 {this.props.teamGraph ?
                                     Object.keys(this.props.teamGraph).map(key => {
                                         return <TableRow>
-                                            <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell>
+                                            {this.props.members.find(m => m.id === parseInt(key)) ?
+                                                <TableCell>{this.props.members.find(m => m.id === parseInt(key)).name}</TableCell> : null}
                                             {this.props.teamGraph[key].map(dataPoint => {
                                                 return <TableCell>{dataPoint.total_time_sec}</TableCell>
                                             })}
