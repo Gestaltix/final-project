@@ -21,7 +21,7 @@ class MapSession extends Component {
             {
                 this.props.teamGraph ?
                     <Paper className='GraphPaper'>
-                        <h2 className='NameForm'>Total Energy Per Zone</h2>
+                        <h2 className='NameForm'>Total Energy Per Zone(KJ/Kg)</h2>
                         <Table classes={{ root: { backgroundColor: 'yellow' } }} className='Table'>
                             <TableHead>
                                 <TableRow>
