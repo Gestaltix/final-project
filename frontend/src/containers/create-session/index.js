@@ -72,7 +72,9 @@ class CreateSession extends Component {
             method: 'POST'
         }
         delete options.headers['Content-Type'];
-
+        this.setState({
+            sent: true
+        })
         fetch('https://skunk.propulsion-learn.ch/backend/api/sessions/create/', options)
             .then(r => r.json())
             .then((r) => {
@@ -82,11 +84,6 @@ class CreateSession extends Component {
                     data: r
                 })
                 return r
-            })
-            .then(r => {
-                this.setState({
-                    sent: true
-                })
             })
             .then(r => {
                 this.props.dispatch({
