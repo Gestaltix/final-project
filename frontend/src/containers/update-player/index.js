@@ -28,7 +28,7 @@ class NewPlayer extends Component {
         return <div className='NewPlayer'>
             <TopBar history={this.props.history} />
             <Paper className='NewPlayerPaper'>
-                <h3>MAKE A NEW PLAYER</h3>
+                <h3>UPDATE PLAYER</h3>
                 <form onSubmit={this.submitHandler}>
                     <TextField fullWidth className={classes.textField} label='Name' onChange={this.nameChangeHandler} value={this.state.name} />
                     <TextField fullWidth className={classes.textField} label='Weight(kg)' onChange={this.weightChangeHandler} value={this.state.weight} />
