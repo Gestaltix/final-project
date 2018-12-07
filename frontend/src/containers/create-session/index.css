@@ -1,7 +1,6 @@
 .CreateSeshPaper {
     display: block;
     padding: 1%;
-    font-weight: bold;
     text-transform: uppercase;
     width: 20%;
     margin: 50px auto;
@@ -33,7 +32,7 @@ select {
 
   .CreateSession {
       width: 1920px;
-      height: 1410px;
+      height: 1090px;
       background-image: url('../../assets/images/session.jpg');
       background-size: cover;
       margin: 0;
