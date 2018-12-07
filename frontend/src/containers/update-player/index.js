@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Paper } from '@material-ui/core';
 import connection from '../../connection';
+import { withStyles } from '@material-ui/core/styles';
 import TopBar from '../../components/topbar';
 
+const styles = theme => ({
+    textField: {
+        margin: 10,
+    },
+    button: {
+        marginTop: 20
+    }
+})
 class NewPlayer extends Component {
     constructor(props) {
         super(props)
@@ -15,17 +24,19 @@ class NewPlayer extends Component {
     }
     render() {
         console.log('These are MY Props...', this.props)
-        return <div>
+        const { classes } = this.props
+        return <div className='NewPlayer'>
             <TopBar history={this.props.history} />
-            <form onSubmit={this.submitHandler}>
-                <div className='PlayerForm'>
-                    <TextField label='Name' onChange={this.nameChangeHandler} value={this.state.name} helperText={this.props.player.name} />
-                    <TextField label='Weight(kg)' onChange={this.weightChangeHandler} value={this.state.weight} helperText={this.props.player.weight} />
-                    <TextField label='Height' onChange={this.heightChangeHandler} value={this.state.height} helperText={this.props.player.height} />
-                    <TextField type='date' label='Birthday' onChange={this.birthdayChangeHandler} value={this.state.age} helperText={this.props.player.birthday} InputLabelProps={{ shrink: true }} />
-                </div >
-                <Button type='submit'>Update</Button>
-            </form>
+            <Paper className='NewPlayerPaper'>
+                <h3>MAKE A NEW PLAYER</h3>
+                <form onSubmit={this.submitHandler}>
+                    <TextField fullWidth className={classes.textField} label='Name' onChange={this.nameChangeHandler} value={this.state.name} />
+                    <TextField fullWidth className={classes.textField} label='Weight(kg)' onChange={this.weightChangeHandler} value={this.state.weight} />
+                    <TextField fullWidth className={classes.textField} label='Height' onChange={this.heightChangeHandler} value={this.state.height} />
+                    <TextField fullWidth className={classes.textField} type='date' label='Birthday' onChange={this.birthdayChangeHandler} value={this.state.age} InputLabelProps={{ shrink: true }} />
+                    <Button className={classes.button} variant='outlined' type='submit'>Make Player</Button>
+                </form>
+            </Paper>
         </div>
     }
     nameChangeHandler = (e) => {
@@ -90,4 +101,4 @@ class NewPlayer extends Component {
     }
 }
 
-export default connection(NewPlayer);
+export default withStyles(styles)(connection(NewPlayer));
