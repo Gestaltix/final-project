@@ -41,3 +41,28 @@
     margin: 5px;
 }
 
+.PlayerPaper {
+    padding: 10px;
+    margin: 60px auto;
+    width: 40%;
+}
+
+.PlayerPaper > h1, .PlayerPaper > h2 {
+    text-transform: uppercase;
+}
+
+.Player {
+    width: 1920px;
+    height: 1090px;
+    background-size: cover;
+    background-image: url('../../assets/images/team.jpg')
+}
+
+.PlayerFlexDiv {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 93%;
+    margin: 0 auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+}

@@ -1,31 +1,11 @@
-.SessionsButton {
-    display: flex;
-    flex-direction: column;
-    margin: 2% auto;
-}
-
-.SessionsButton > * {
-    margin: 2% auto;
-}
-
-.SessionsButton {
+.Sessions {
     background-image: url('../../assets/images/sessions.png');
     width: 100%;
-    min-height: 924px;
+    min-height: 962px;
     max-height: 100%;
-}
-
-.SessionsPaper {
-    padding: 10px;
-}
-
-.SessionsListItem {
-    margin: 1px;
-    background-color: rgb(246, 247, 234);
-}
-
-.SessionsListItem:hover {
-    background-color: rgb(228, 229, 215);
+    display: flex;
+    flex-direction: column;
+    margin: 0% auto;
 }
 
 .LoadingGif {
@@ -33,17 +13,13 @@
     width: auto;
 }
 
-.LoadDescription {
-    margin-right: 10px;
-}
-
-.SessionsList {
-    width: 50%;
+.SessionsPaper {
+    width: 30%;
     margin: 0 auto;
 }
 
-.SessionDiv {
-    width: 50%;
+.SessionsButton {
+    margin: 60px auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }

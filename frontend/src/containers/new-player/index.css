@@ -1,13 +1,12 @@
-.NewTeamPaper {
-    width: 20%;
-    margin: 150px auto;
-    padding: 20px
-}
-
-.NewTeam {
+.NewPlayer {
     width: 1920px;
     height: 1090px;
     background-size: cover;
     background-image: url('../../assets/images/team.jpg')
+}
 
+.NewPlayerPaper {
+    width: 20%;
+    margin: 150px auto;
+    padding: 20px
 }

@@ -1,15 +1,23 @@
 .CreateSeshPaper {
-    display: flex;
-    justify-content: space-around;
+    display: block;
     padding: 1%;
     font-weight: bold;
+    text-transform: uppercase;
+    width: 20%;
+    margin: 50px auto;
+}
+
+.CreateSeshPaper > * {
+    width: 100%;
+    margin: 20px auto;
 }
 
 select {
     /* General styling */
-    height: 30px;
+    height: 40px;
     width: 100px;
     border-radius: 0;
+    font-size: 25px;
     padding-left: 10px;
   
     /* Removes the default <select> styling */
@@ -20,5 +28,44 @@ select {
     /* Positions background arrow image */
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
     background-repeat: no-repeat;
-    background-position: 75px center;
+    background-position: 80% center;
+  }
+
+  .CreateSession {
+      width: 1920px;
+      height: 1410px;
+      background-image: url('../../assets/images/session.jpg');
+      background-size: cover;
+      margin: 0;
+  }
+
+  .DropZone {
+      border: 1px dashed yellow;
+      width: 55%;
+      height: 70%;
+      background: repeating-linear-gradient(
+      45deg,
+    #e9dd38,
+    #606cbc00 10px,
+    #e9dd38 10px,
+    #46529800 10px );
+      margin: 0 auto;
+  }
+
+  .DropZoneH2 {
+      width: 10%;
+      margin: 0 auto;
+      color: yellow;
+      text-transform: uppercase;
+      text-align: center;
+  }
+
+  .DropZoneDiv {
+      width: 100%;
+      height: 40%;
+  } 
+
+  .CreateSessionButtonDiv {
+        display: flex;
+        justify-content: space-around;
   }

@@ -1,12 +1,3 @@
-.GraphPlot {
-    width: 100%;
-    background-color: black;
-}
-
-.GraphPlot * {
-    color: white;
-}
-
 .AddTeamButton {
     margin: 1%;
     display: flex;
@@ -42,7 +33,13 @@
 }
 
 .Team {
-    background-image: url('../../assets/images/messi.jpg') cover;
-    height: 1080px;
+    background-image: url('../../assets/images/team.jpg');
+    background-size: cover;
+    height: 1090px;
     width: 1920px;
+}
+
+.TeamPaper {
+    width: 30%;
+    margin: 150px auto;
 }

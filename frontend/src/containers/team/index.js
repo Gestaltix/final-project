@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css'
 import connect from "react-redux/es/connect/connect";
 import TopBar from "../../components/topbar";
-import { ListItem, ListItemText, Button, List } from '@material-ui/core';
+import { ListItem, ListItemText, Button, List, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 class Team extends Component {
@@ -27,28 +27,31 @@ class Team extends Component {
         return (
             <div className='Team'>
                 <TopBar history={this.props.history} />
-                <div className='AddTeamDiv'>
-                    <h1>
-                        {this.props.team.name}
-                    </h1>
-                </div>
-                {this.props.team.members ?
-                    this.props.team.members.length !== 0 ?
-                        this.props.team.members.map(member => {
-                            return <div className='AddTeamDiv'>
-                                <List className='TeamsList' classes={{ root: { backgroundColor: 'yellow' } }}>
-                                    <ListItem
-                                        alignItems='center'
-                                        className='YellowList'
-                                        button key={member.id}
-                                        onClick={this.selectMember(member.id)}>
+                <Paper className='TeamPaper'>
+                    <div className='AddTeamDiv'>
+                        <h1>
+                            {this.props.team && this.props.team.name ? this.props.team.name.toUpperCase() : null}
+                        </h1>
+                    </div>
+                    {this.props.team.members ?
+                        this.props.team.members.length !== 0 ?
+                            this.props.team.members.map(member => {
+                                return <div className='TeamList'>
+                                    <List classes={{ root: { backgroundColor: 'yellow' } }}>
+                                        <ListItem
+                                            divider={true}
+                                            alignItems='center'
+                                            className='YellowList'
+                                            button key={member.id}
+                                            onClick={this.selectMember(member.id)}>
 
-                                        <ListItemText primary={member.name} />
+                                            <ListItemText primary={member.name} />
 
-                                    </ListItem>
-                                </List>
-                            </div>
-                        }) : `This team doesn't have any members. Click the "Add Player" button to add one!` : null}
+                                        </ListItem>
+                                    </List>
+                                </div>
+                            }) : `This team doesn't have any members. Click the "Add Player" button to add one!` : null}
+                </Paper>
                 <div className='AddTeamDiv'>
                     <Link to={`/team/${this.props.match.params.id}/new-player`}>
                         <Button color='primary' variant='contained' >

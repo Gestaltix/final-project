@@ -12,9 +12,10 @@ class NewTeam extends Component {
         }
     }
     render() {
-        return <div>
+        return <div className='NewTeam'>
             <TopBar history={this.props.history} />
             <Paper className='NewTeamPaper'>
+                <h3>MAKE NEW TEAM</h3>
                 <form onSubmit={this.submitHandler}>
                     <TextField fullWidth label='Team Name' value={this.state.teamName} onChange={this.teamNameHandler} />
                     <Button type='submit' >Make Team</Button>

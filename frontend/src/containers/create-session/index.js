@@ -12,40 +12,49 @@ class CreateSession extends Component {
             tracker: null,
             team: null,
             package: [],
+            sent: false
         }
-    }
-
-    showDropzone = () => {
-        console.log('dropzone')
-        if (this.state.team && this.state.tracker) {
-            return (<Dropzone onDrop={this.handleOnDrop} />)
-        }
-        return null
     }
 
     render() {
         return (
-            <div>
+            <div className='CreateSession'>
                 <TopBar history={this.props.history} />
+
+
                 <Paper className='CreateSeshPaper'>Pick a tracker
-                <select onChange={this.handleChangeTracker}>
+
+                        <select onChange={this.handleChangeTracker}>
                         <option selected disabled>Pick a tracker</option>
                         {this.props.trackers.map((tracker, index) => {
                             return <option key={tracker.id} value={tracker.id}>{tracker.name}</option>
                         })}
                     </select>
-                </Paper>
-                <Paper className='CreateSeshPaper'>Pick a team
-                <select onChange={this.handleChangeTeam}>
+
+                    Pick a team
+                        <select onChange={this.handleChangeTeam}>
                         <option selected disabled>Pick a team</option>
                         {this.props.teams.map((team, index) => {
                             return <option key={team.id} value={team.id}>{team.name}</option>
                         })}
                     </select>
                 </Paper>
-                {this.showDropzone()}
+
+                {this.state.team && this.state.tracker ?
+                    <div className='DropZoneDiv'>
+                        <h2 className='DropZoneH2'>Drop your files or click</h2>
+                        <Dropzone className='DropZone' onDrop={this.handleOnDrop}></Dropzone></div> : null}
                 {this.state.package.length > 0 ?
-                    <Button className='NameForm' onClick={this.clickHandler}>Upload Files</Button> : null}
+                    <div className='CreateSessionButtonDiv'>
+                        <Button
+                            disabled={this.state.sent}
+                            size='large'
+                            color='primary'
+                            variant='contained'
+                            onClick={this.clickHandler}>
+                            {this.state.sent ? 'Loading' : 'Upload Files'}
+                        </Button>
+                    </div> : null}
             </div>
         )
     }
@@ -73,6 +82,11 @@ class CreateSession extends Component {
                     data: r
                 })
                 return r
+            })
+            .then(r => {
+                this.setState({
+                    sent: true
+                })
             })
             .then(r => {
                 this.props.dispatch({

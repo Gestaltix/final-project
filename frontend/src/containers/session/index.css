@@ -4,10 +4,29 @@
 }
 
 .MapSessionRow > * {
-    margin: 10px;
+    margin: 30px;
+    display: flex;
 }
 
 .SessionButtons {
     display: flex;
     justify-content: space-around
+}
+
+.SessionPaper {
+    width: 68%;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.Session {
+    width: 1920px;
+    height: 1090px;
+    background-image: url('../../assets/images/session.jpg');
+    background-size: cover;
+}
+
+.GraphPaper {
+    width: 70%;
+    margin: 0 auto
 }

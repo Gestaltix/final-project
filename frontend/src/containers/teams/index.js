@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css'
-import { Button } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import connection from '../../connection';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,7 +27,7 @@ class Teams extends Component {
         if (this.props.teams.length > 0) {
             return this.props.teams.map((team) => {
                 return (
-                    <ListItem className='TeamsListItem' button key={team.id} onClick={this.selectTeam(team.id)}>
+                    <ListItem divider={true} className='TeamsListItem' button key={team.id} onClick={this.selectTeam(team.id)}>
                         <ListItemText primary={team.name} secondary={`${team.members.length} Players`} />
                     </ListItem>
                 )
@@ -36,21 +36,26 @@ class Teams extends Component {
     }
     render() {
         return (
-            <div>
-                {this.props.teams.length !== 0 ?
-                    <div className='TeamsList'>
-                        <List component="nav">
-                            {this.teamList()}
-                        </List>
-                        <div className='AddTeamDiv'><Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button></div>
-                    </div>
-                    :
-                    <div>
-                        <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>
-                        <div className='AddTeamDiv'><Button variant='outlined' onClick={this.addTeamButton}>Add Team</Button></div>
-                    </div>
-                }
-            </div>
+            <div className='Teams'>
+                <div className='AddTeamButtonDiv'>
+                    <Button color='primary' variant='contained' onClick={this.addTeamButton}>
+                        Add Team
+                </Button>
+                </div>
+                <Paper className='TeamsPaper'>
+                    {this.props.teams.length !== 0 ?
+                        <div className='TeamsList'>
+                            <List component="nav">
+                                {this.teamList()}
+                            </List>
+                        </div>
+                        :
+                        <div>
+                            <h3>We don't have any teams associated with your account. Click the "Add Team" button to add one!</h3>
+                        </div>
+                    }
+                </Paper>
+            </div >
         );
     }
     componentDidMount = () => {

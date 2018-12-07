@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core'
+import { Button, Table, TableHead, TableCell, TableRow, TableBody, Paper } from '@material-ui/core'
 import { connect } from 'react-redux';
 import TopBar from '../../components/topbar';
 import './index.css'
@@ -16,38 +16,13 @@ class MapSession extends Component {
     }
     render() {
         console.log(this.props)
-        return <div>
+        return <div className='Session'>
             <TopBar history={this.props.history} />
-            <h2>Map players to files...</h2>
-            <div className='MapSession'>
-                {this.props.members.map(member => {
-                    return <div className='MapSessionRow'>
-                        <p>{member.name}</p>
-                        <select onChange={e => this.handleChange(e, member.id)}>
-                            {this.props.files.find(file => file.id === member.id) ?
-                                <option disabled selected>{this.props.files.find(file => file.id === member.id).filename}</option> :
-                                <option disabled selected>Files</option>}
-                            {this.props.files.map(file => {
-                                return <option value={file.id}>{file.filename}</option>
-                            })}
-                        </select>
-                    </div>
-                })}
-            </div>
-            <div className='SessionButtons'><Button color='primary' variant='contained' onClick={this.handleCLick} disabled=
-                {this.props.sessions.selectedSession
-                    && !this.props.sessions.selectedSession.data_load_in_progress
-                    && !this.props.sessions.selectedSession.data_calculation_in_progress
-                    && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ?
-                    false : true}>{this.props.sessions.selectedSession
-                        && !this.props.sessions.selectedSession.data_load_in_progress
-                        && !this.props.sessions.selectedSession.data_calculation_in_progress
-                        && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ? 'Load Data' : 'Loading'}</Button></div>
-            <h2 className='NameForm'>Total Energy Per Zone</h2>
             {
                 this.props.teamGraph ?
-                    <div>
-                        <Table>
+                    <Paper className='GraphPaper'>
+                        <h2 className='NameForm'>Total Energy Per Zone</h2>
+                        <Table classes={{ root: { backgroundColor: 'yellow' } }} className='Table'>
                             <TableHead>
                                 <TableRow>
                                     <TableCell>
@@ -114,9 +89,36 @@ class MapSession extends Component {
                                     }) : null}
                             </TableBody>
                         </Table>
-                    </div>
+                    </Paper>
                     : null
             }
+            <Paper className='SessionPaper'>
+                <h2>Map players to files...</h2>
+                <div className='MapSession'>
+                    {this.props.members.map(member => {
+                        return <div className='MapSessionRow'>
+                            <p>{member.name}</p>
+                            <select onChange={e => this.handleChange(e, member.id)}>
+                                {this.props.files.find(file => file.id === member.id) ?
+                                    <option disabled selected>{this.props.files.find(file => file.id === member.id).filename}</option> :
+                                    <option disabled selected>Files</option>}
+                                {this.props.files.map(file => {
+                                    return <option value={file.id}>{file.filename}</option>
+                                })}
+                            </select>
+                        </div>
+                    })}
+                </div>
+                <div className='SessionButtons'><Button fullWidth color='primary' variant='contained' onClick={this.handleCLick} disabled=
+                    {this.props.sessions.selectedSession
+                        && !this.props.sessions.selectedSession.data_load_in_progress
+                        && !this.props.sessions.selectedSession.data_calculation_in_progress
+                        && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ?
+                        false : true}>{this.props.sessions.selectedSession
+                            && !this.props.sessions.selectedSession.data_load_in_progress
+                            && !this.props.sessions.selectedSession.data_calculation_in_progress
+                            && !this.props.sessions.selectedSession.power_categories_calculation_in_progress ? 'Load Data' : 'Loading'}</Button></div>
+            </Paper>
         </div >
     }
     handleChange = (e, member) => {
