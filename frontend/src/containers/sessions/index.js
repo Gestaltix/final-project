@@ -20,7 +20,7 @@ class Sessions extends Component {
             <div className='TeamsList'>
                 <Paper className='SessionsPaper'>
                     <List >
-                        {this.props.sessions.sessions ?
+                        {this.props.sessions.sessions && this.props.sessions.sessions.length !== 0 ?
                             this.props.sessions.sessions.map((session, index) => {
                                 return <Link to={`/sessions/${session.id}`}>
                                     <ListItem divider={true}>
@@ -45,7 +45,7 @@ class Sessions extends Component {
 
                                     </ListItem>
                                 </Link>
-                            }) : null}
+                            }) : `We don't have any sessions associated with your account. Click "Make New Session" to add one!`}
                     </List>
                 </Paper>
             </div>
