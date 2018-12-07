@@ -47,12 +47,11 @@ class CreateSession extends Component {
                 {this.state.package.length > 0 ?
                     <div className='CreateSessionButtonDiv'>
                         <Button
-                            disabled={this.state.sent}
                             size='large'
                             color='primary'
                             variant='contained'
-                            onClick={this.clickHandler}>
-                            {this.state.sent ? 'Loading' : 'Upload Files'}
+                            onClick={this.state.sent ? null : this.clickHandler}>
+                            {this.state.sent ? 'Loading...' : 'Upload Files'}
                         </Button>
                     </div> : null}
             </div>
@@ -60,6 +59,9 @@ class CreateSession extends Component {
     }
 
     clickHandler = () => {
+        this.setState({
+            sent: true
+        })
         const formdata = new FormData()
         formdata.append('file', this.state.package[0])
         formdata.append('team', this.state.team)
@@ -72,9 +74,6 @@ class CreateSession extends Component {
             method: 'POST'
         }
         delete options.headers['Content-Type'];
-        this.setState({
-            sent: true
-        })
         fetch('https://skunk.propulsion-learn.ch/backend/api/sessions/create/', options)
             .then(r => r.json())
             .then((r) => {
