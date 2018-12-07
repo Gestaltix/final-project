@@ -30,7 +30,7 @@ class Sessions extends Component {
                                                 session.data_load_in_progress ? 'Loading Data -' :
                                                     session.data_calculation_in_progress ? 'Calculating Data -' :
                                                         session.power_categories_calculation_in_progress ? 'Calculating Power Categories -' : ''
-                                                } ${this.props.teams.find(team => team.id === session.team).name}`}
+                                                } ${this.props.teams.find(team => team.id === session.team) ? this.props.teams.find(team => team.id === session.team).name : null}`}
                                             onClick={this.clickHandler} />
 
                                         {session.data_load_in_progress

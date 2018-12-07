@@ -93,7 +93,7 @@ class MapSession extends Component {
                     : null
             }
             <Paper className='SessionPaper'>
-                <h2>Map players to files...</h2>
+                <h2>MAP PLAYERS TO FILES</h2>
                 <div className='MapSession'>
                     {this.props.members.map(member => {
                         return <div className='MapSessionRow'>
