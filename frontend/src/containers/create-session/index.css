@@ -17,6 +17,7 @@ select {
     width: 200px;
     border-radius: 0;
     font-size: 25px;
+    text-transform: uppercase;
     padding-left: 10px;
   
     /* Removes the default <select> styling */
